@@ -1,0 +1,22 @@
+﻿.padWide {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.width50p {
+    width: 50%;
+}
+
+.skiny-input {
+    height: 25px;
+    margin-left: 4px;
+    display: inline-block;
+    padding: 0 4px;
+}
+
+.padL8 {
+    padding-left: 8px
+}
+.under {
+   border-bottom: 1px solid #00bfff
+}

@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/cerulean_bootstrap.css" rel="stylesheet" />
+    <link href="Content/project.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+    <div id="wrap">
+
+
+
+
+        <nav class="navbar navbar-inverse" ng-controller="AccountController">
+            <div class="container">
+                <div class="navbar-header">
+                    <button class="navbar-toggle " type="button" data-toggle="collapse" data-target="#navbar-main">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="/" class="navbar-brand"> <span class="glyphicon glyphicon-time"></span> Time Tracker</a>
+                </div>
+
+                <div class="navbar-collapse collapse" id="navbar-main">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/tracker"> Work</a></li>
+                        <li><a href="/projects">Projects</a></li>
+                        <li><a href="/clients">Clients</a></li>
+                        <li><a href="/clients">Stats</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="pull-left">
+                                <span class="clickable"><i class="glyphicon glyphicon-chevron-down"></i></span> &nbsp;&nbsp;&nbsp;
+                                <div>Some very awesome project </div>
+
+                            </div>
+                            <div class="pull-right">
+                                <button class="btn btn-success btn-sm padWide">
+                                    <span class="glyphicon glyphicon-play"></span>
+                                    Start
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-unstyled">
+                        <li><input type="checkbox" /> Task 1 </li>
+                        <li><input type="checkbox" /> Task 2 </li>
+                        <li><input type="checkbox" class="pull-left " /> <input type="text" class="width50p form-control skiny-input" placeholder="Add task " /> </li>
+                    </ul>
+                </div>
+                <div class="panel-footer ">
+                    <div class="row">
+                        <div class="col-md-3"><span class="text-muted">Client: </span> <span class="text-success">Some Cool compnay</span></div>
+                        <div class="col-md-3"><span class="text-muted">Hours this week: </span> <span class="text-success">10</span></div>
+                        <div class="col-md-3"><span class="text-muted"> Rate: </span> <span class="text-success">$40</span></div>
+                        <div class="col-md-3"><span class="text-muted"> Earnings: </span> <span class="text-success">$400</span></div>
+                    </div>
+                </div>
+            </div>
+            
+
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="pull-left">
+                                <span class="clickable"><i class="glyphicon glyphicon-chevron-up"></i></span> &nbsp;&nbsp;&nbsp;
+                                 Some very awesome project 
+                              
+                            </div>
+                            <div class="pull-right">
+                             
+
+                                <button class="btn btn-success btn-sm padWide">
+                                    <span class="glyphicon glyphicon-play"></span>
+                                    Start
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body collapse">
+                    <ul class="list-unstyled">
+                        <li><input type="checkbox" /> Task 1 </li>
+                        <li><input type="checkbox" /> Task 2 </li>
+                        <li><input type="checkbox" class="pull-left " /> <input type="text" class="width50p form-control skiny-input" placeholder="Add task " /> </li>
+                    </ul>
+                </div>
+    
+            </div>
+
+
+            <!--<div>
+                <div class="under">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="pull-left"> <h5><a href="#"> Some Project 2</a>  </h5></div>
+                            <div class="pull-right">
+                                <button class="btn btn-success btn-xs padWide ">Start</button>
+                                </div>
+                            </div>
+                    </div>
+
+                </div>
+                <div class="padL8">
+                    <ul class="list-unstyled">
+                        <li><input type="checkbox" /> Task 1 </li>
+                        <li><input type="checkbox" /> Task 2 </li>
+                        <li><input type="checkbox" class="pull-left " /> <input type="text" class="width50p form-control skiny-input" placeholder="Add task " /> </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div>
+                <div class="under">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="pull-left"> <h5><a href="#"> Some Project 2</a>  </h5></div>
+                            <div class="pull-right">
+                                <button class="btn btn-success btn-xs padWide ">Start</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="padL8">
+                    <ul class="list-unstyled">
+                        <li><input type="checkbox" /> Task 1 </li>
+                        <li><input type="checkbox" /> Task 2 </li>
+                        <li><input type="checkbox" class="pull-left " /> <input type="text" class="width50p form-control skiny-input" placeholder="Add task " /> </li>
+                    </ul>
+                </div>
+            </div>-->
+            <!--<ng-view></ng-view>-->
+        </div>
+
+    </div>
+
+    <script src="/Scripts/angular.js"></script>
+    <script src="/Scripts/angular-resource.js"></script>
+    <script src="/Scripts/angular-route.js"></script>
+    <script src="/Scripts/angular-cookies.js"></script>
+    <script src="/Scripts/angular-animate.js"></script>
+
+    <script src="/Scripts/jquery-2.1.1.js"></script>
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/moment.js"></script>
+    <script src="/Scripts/datetimepicker.js"></script>
+    <script src="/Scripts/ng-table.js"></script>
+    <script src="/Scripts/loading-bar.js"></script>
+
+    <!--<script src="~/app/app.js"></script>
+    <script src="~/app/controllers/JogTrackerController.js"></script>
+    <script src="~/app/controllers/AccountController.js"></script>
+    <script src="~/app/controllers/EditProfileController.js"></script>
+    <script src="~/app/controllers/LoginController.js"></script>
+    <script src="~/app/controllers/MainMenuController.js"></script>
+    <script src="~/app/controllers/ReportsController.js"></script>
+    <script src="~/app/services/accountService.js"></script>
+    <script src="~/app/services/authService.js"></script>
+    <script src="~/app/services/logAppService.js"></script>
+    <script src="~/app/services/globals.js"></script>
+
+
+    <script src="~/app/main.js"></script>
+
+
+    <script src="~/Scripts/highcharts.js"></script>-->
+</body>
+</html>
