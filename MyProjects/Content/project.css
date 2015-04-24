@@ -7,6 +7,9 @@
     width: 50%;
 }
 
+.width100p {
+    width: 100% !important;
+}
 .skiny-input {
     height: 25px;
     margin-left: 4px;
@@ -18,5 +21,10 @@
     padding-left: 8px
 }
 .under {
-   border-bottom: 1px solid #00bfff
+    border-bottom: 1px solid #00bfff;
+    margin-bottom: 4px;
+}
+
+.large {
+    font-size: 21px;
 }
