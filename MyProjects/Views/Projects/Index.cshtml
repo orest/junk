@@ -1,0 +1,100 @@
+﻿@model IEnumerable<MyProjects.Models.ProjectVm>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.Client.CompanyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.Title)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Project.Rate)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Project.MinHoursPerWeek)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.MaxHoursPerWeek)
+        </th>
+        <th>Hours Worked </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.Client.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.Rate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.MinHoursPerWeek)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.MaxHoursPerWeek)
+            </td>
+            <td>
+                @item.TotalHours.ToString("##.##")
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Project.ProjectId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Project.ProjectId }) |
+
+                @if (item.HasActiveLog)
+                {
+
+                    <button class="btn btn-primary stop" data-id="@item.Project.ProjectId"> Stop </button>
+
+                }
+                else
+                {
+                    @Html.ActionLink("Start", "Start", new { id = item.Project.ProjectId })
+                }
+
+
+                @*@Html.ActionLink("Delete", "Delete", new { id=item.ProjectId })*@
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.Partial("_SubmitTime")
+
+@section scripts
+{
+
+    <script>
+
+        $(function () {
+
+            $(".stop").on("click", function () {
+
+                $("#id").val($(this).data("id"));
+
+
+                $('#modConfirm').modal({
+                    keyboard: false
+                });
+            });
+        });
+    </script>
+}
