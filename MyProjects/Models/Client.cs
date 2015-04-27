@@ -16,9 +16,12 @@ namespace MyProjects.Models
         public string CompanyName { get; set; }
         public string ContactName { get; set; }
         public string Phone { get; set; }
+        public string Skype { get; set; }
         public string Email { get; set; }
         public decimal Rate { get; set; }
+        [Display(Name = "Timesheet Type")]
         public string TimesheetCode { get; set; }
+        [Display(Name = "Timesheet Frequency")]
         public string TimesheetFrequencyCode { get; set; }
 
         [DataType(DataType.MultilineText)]

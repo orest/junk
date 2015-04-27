@@ -21,9 +21,11 @@ namespace MyProjects.Models
         public int ProjectStatusId { get; set; }
         public DateTime StartDate { get; set; }
         public string Duration { get; set; }
+        [DataType(DataType.Currency)]
         public decimal Rate { get; set; }
-        [Display(Name = "Hours/Week")]
+        [Display(Name = "Max Hours/Week")]
         public decimal? MaxHoursPerWeek { get; set; }
+        [Display(Name = "Min Hours/Week")]
         public decimal? MinHoursPerWeek { get; set; }
         [DataType(DataType.MultilineText)]
         public string Notes { get; set; }

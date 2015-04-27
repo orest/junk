@@ -44,9 +44,13 @@ namespace MyProjects.Models
             }
         }
 
-        public decimal TotalHours
+        public string TotalHours
         {
-            get { return Convert.ToDecimal(TotalTime)/60; }
+            get
+            {
+                var total = Convert.ToDecimal(TotalTime)/60;
+                return total.ToString("N1");
+            }
         }
         public IEnumerable<SelectListItem> ProjectStatuses { get; set; }
 

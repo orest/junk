@@ -6,6 +6,8 @@ using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Helpers;
+using System.Web.Http.Results;
 using System.Web.Mvc;
 using MyProjects.Data;
 using MyProjects.Helpers;
@@ -20,8 +22,8 @@ namespace MyProjects.Controllers
         // GET: Projects
         public ActionResult Index()
         {
-            var projects = db.Projects.Include(p => p.Client).Include(p => p.TimeSheet).OrderByDescending(p=>p.Rate).ToList();
-            
+            var projects = db.Projects.Include(p => p.Client).Include(p => p.TimeSheet).OrderByDescending(p => p.Rate).ToList();
+
             var pr = projects.Select(p => new ProjectVm()
             {
                 Project = p
@@ -57,7 +59,7 @@ namespace MyProjects.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProjectId,ClientId,Title,Description,ProjectStatusId,StartDate,Duration,Rate,MaxHoursPerWeek,Notes")] Project project)
+        public ActionResult Create(Project project)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +93,7 @@ namespace MyProjects.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProjectId,ClientId,Title,Description,ProjectStatusId,StartDate,Duration,Rate,MaxHoursPerWeek,Notes")] Project project)
+        public ActionResult Edit([Bind(Include = "ProjectId,ClientId,Title,Description,ProjectStatusId,StartDate,Duration,Rate,MaxHoursPerWeek,MinHoursPerWeek,Notes")] Project project)
         {
             if (ModelState.IsValid)
             {
@@ -140,6 +142,16 @@ namespace MyProjects.Controllers
 
         public ActionResult Start(int id)
         {
+            //make sure everything is stopped first
+            var openLogs = db.WorkLogs.Where(w => w.ProjectId == id && w.EndDate == null).ToList();
+            if (openLogs.Any())
+            {
+                foreach (var item in openLogs)
+                {
+                    ProcessStopForProject(item.ProjectId, "");
+                }
+            }
+
             var today = DateTime.Now;
             var workLog = new WorkLog()
             {
@@ -154,17 +166,40 @@ namespace MyProjects.Controllers
 
         public ActionResult Stop(int id, string note)
         {
-            var workItems = db.WorkLogs.Where(w => w.ProjectId == id && w.EndDate ==null).ToList();
-            foreach (var item in workItems)
-            {
-                item.EndDate = DateTime.Now;
-                item.ElapsedMinutes = (item.EndDate.Value - item.StartDate).Minutes;
-                item.Notes = note;
-            }
-            db.SaveChanges();
+            ProcessStopForProject(id, note);
             return RedirectToAction("Index");
         }
 
+        private void ProcessStopForProject(int projectId, string note)
+        {
+            var workItems = db.WorkLogs.Where(w => w.ProjectId == projectId && w.EndDate == null).ToList();
+            foreach (var item in workItems)
+            {
+                item.EndDate = DateTime.Now;
+                item.ElapsedMinutes = (int)(item.EndDate.Value - item.StartDate).TotalMinutes;
+                item.Notes = note;
+            }
+            db.SaveChanges();
+        }
 
+        public ActionResult GetTime(int id)
+        {
+            var time = 0;
+            var workItems = db.WorkLogs.FirstOrDefault(w => w.ProjectId == id && w.EndDate == null);
+            if (workItems != null)
+            {
+                time = (int)(DateTime.Now - workItems.StartDate).TotalMinutes;
+            }
+
+            return Json(new
+            {
+                Elapsed = time
+            }, JsonRequestBehavior.AllowGet);
+        }
     }
+
+
 }
+
+
+

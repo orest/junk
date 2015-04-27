@@ -4,12 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Projects</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Project.Client.CompanyName)
@@ -22,14 +22,9 @@
             @Html.DisplayNameFor(model => model.Project.Rate)
         </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.Project.MinHoursPerWeek)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Project.MaxHoursPerWeek)
-        </th>
-        <th>Hours Worked </th>
 
+        <th>This Week</th>
+        <th>This Session</th>
         <th></th>
     </tr>
 
@@ -45,29 +40,38 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Project.Rate)
             </td>
+
             <td>
-                @Html.DisplayFor(modelItem => item.Project.MinHoursPerWeek)
+                @item.TotalHours / @Html.DisplayFor(modelItem => item.Project.MaxHoursPerWeek)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Project.MaxHoursPerWeek)
+                @if (item.HasActiveLog)
+                {
+                    <span data-id="@item.Project.ProjectId" class="active-project">0</span> @:minutes
+                }
             </td>
             <td>
-                @item.TotalHours.ToString("##.##")
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Project.ProjectId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Project.ProjectId }) |
 
                 @if (item.HasActiveLog)
                 {
 
-                    <button class="btn btn-primary stop" data-id="@item.Project.ProjectId"> Stop </button>
+                    <button class="btn btn-primary btn-sm  btn-warning stop" data-id="@item.Project.ProjectId">
+                        <span class="glyphicon glyphicon-stop"></span> &nbsp; Stop
+                    </button>
 
                 }
                 else
                 {
-                    @Html.ActionLink("Start", "Start", new { id = item.Project.ProjectId })
+                                        
+                    @Html.ActionLink("Start", "Start", new { id = item.Project.ProjectId }, new { @class = "btn btn-success btn-sm" })
                 }
+
+
+                @Html.ActionLink("Edit", "Edit", new { id = item.Project.ProjectId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Project.ProjectId }) |
+
+                @Html.ActionLink("Client Info", "Details", "Clients", new { id = item.Project.ClientId }, null) |
+
 
 
                 @*@Html.ActionLink("Delete", "Delete", new { id=item.ProjectId })*@
@@ -83,10 +87,10 @@
 {
 
     <script>
+        var intervalId;
+        $(function() {
 
-        $(function () {
-
-            $(".stop").on("click", function () {
+            $(".stop").on("click", function() {
 
                 $("#id").val($(this).data("id"));
 
@@ -95,6 +99,22 @@
                     keyboard: false
                 });
             });
+            updateTimeupdateTime();
+
+            intervalId = setInterval(updateTimeupdateTime, 60000);
         });
+
+        function updateTimeupdateTime() {
+            var el = $(".active-project");
+            if (el && el.length>0) {
+                var projectId = $(".active-project").data("id");
+                $.get("Projects/gettime/" + projectId, function(data) {
+                    el.text(data.Elapsed);
+                });
+            } else {
+                clearInterval(intervalId);
+            }
+
+        }
     </script>
 }
