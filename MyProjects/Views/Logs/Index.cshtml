@@ -3,9 +3,20 @@
 @{
     ViewBag.Title = "Index";
 }
+<link href="~/Content/cerulean_bootstrap.css" rel="stylesheet" />
+<h2>Work Log</h2>
+<div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-3">
 
-<h2>Index</h2>
+    </div>
+    <div class="col-lg-3">
+        @Html.ActionLink("Show All", "Index", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Show This Week", "Index", new { timeSpan = "week" }, new { @class = "btn btn-primary" })
+    </div>
+    <div class="col-lg-3">
 
+    </div>
+</div>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -15,13 +26,11 @@
             @Html.DisplayNameFor(model => model.Project.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StartDate)
+            Work Session
+
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ElapsedMinutes)
+            Elapsed
         </th>
         <th>
             @Html.DisplayNameFor(model => model.WeekId)
@@ -32,32 +41,36 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Project.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ElapsedMinutes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WeekId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Notes)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.WorkLogId }) |
-            
-            @Html.ActionLink("Delete", "Delete", new { id=item.WorkLogId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.Title)
+            </td>
+            <td class="nowrap">
+                @Html.DisplayFor(modelItem => item.StartDate) -
 
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td class="nowrap">
+                @Html.DisplayFor(modelItem => item.ElapsedMinutes) (@(((decimal)item.ElapsedMinutes / 60).ToString("n2")) )
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WeekId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td class="nowrap">
+                @Html.ActionLink("Edit", "Edit", new { id = item.WorkLogId }) |
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.WorkLogId })
+            </td>
+        </tr>
+    }
 </table>
+<div class="alert alert-info">
+    <div class="text-right">
+        Total : <label class="text-success">@(((decimal)Model.Sum(s => s.ElapsedMinutes) / 60).ToString("n2"))</label>
+    </div>
+</div>

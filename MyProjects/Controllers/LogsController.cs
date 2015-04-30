@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MyProjects.Data;
+using MyProjects.Helpers;
 using MyProjects.Models;
 
 namespace MyProjects.Controllers
@@ -16,10 +17,19 @@ namespace MyProjects.Controllers
         private TimeTrakerContext db = new TimeTrakerContext();
 
         // GET: Logs
-        public ActionResult Index()
+        public ActionResult Index(int projectId = 0, string timeSpan = "")
         {
-            var workLogs = db.WorkLogs.Include(w => w.Project).ToList();
-            return View(workLogs);
+            var workLogs = db.WorkLogs.Include(w => w.Project);
+            if (projectId > 0)
+                workLogs = workLogs.Where(p => p.ProjectId == projectId);
+            if (!string.IsNullOrEmpty(timeSpan))
+            {
+                int thisWeek = Helper.GetWeek(DateTime.Now);
+                workLogs = workLogs.Where(p => p.WeekId == thisWeek);
+            }
+
+            var result = workLogs.OrderByDescending(p => p.StartDate).ToList();
+            return View(result);
         }
 
         // GET: Logs/Details/5

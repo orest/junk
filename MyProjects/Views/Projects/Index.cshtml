@@ -6,8 +6,21 @@
 
 <h2>Projects</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+<div class="row">
+    <div class="col-md-3 ">
+
+    </div>
+    <div class="col-md-3">
+        @Html.ActionLink("Active Only", "Index", new { activeOnly = true }, new { @class = "btn btn-primary " })
+        @Html.ActionLink("All Projects", "Index", new { activeOnly = false }, new { @class = "btn btn-primary " })
+    </div>
+    <div class="col-md-3"></div>
+</div>
+<p class="text-right">
+    
+    <a class="btn btn-success" href="@Url.Action("Create")">
+        <span class="glyphicon glyphicon-plus-sign"></span> Create New 
+    </a>
 </p>
 <table class="table table-striped">
     <tr>
@@ -62,15 +75,14 @@
                 }
                 else
                 {
-                                        
+
                     @Html.ActionLink("Start", "Start", new { id = item.Project.ProjectId }, new { @class = "btn btn-success btn-sm" })
                 }
 
-
                 @Html.ActionLink("Edit", "Edit", new { id = item.Project.ProjectId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Project.ProjectId }) |
-
-                @Html.ActionLink("Client Info", "Details", "Clients", new { id = item.Project.ClientId }, null) |
+                @*@Html.ActionLink("Details", "Details", new { id = item.Project.ProjectId }) |*@
+                @Html.ActionLink("Client ", "Details", "Clients", new { id = item.Project.ClientId }, null) |
+                @Html.ActionLink("Log ", "Index", "Logs", new { projectId = item.Project.ProjectId }, null)
 
 
 
@@ -88,9 +100,9 @@
 
     <script>
         var intervalId;
-        $(function() {
+        $(function () {
 
-            $(".stop").on("click", function() {
+            $(".stop").on("click", function () {
 
                 $("#id").val($(this).data("id"));
 
@@ -106,9 +118,9 @@
 
         function updateTimeupdateTime() {
             var el = $(".active-project");
-            if (el && el.length>0) {
+            if (el && el.length > 0) {
                 var projectId = $(".active-project").data("id");
-                $.get("Projects/gettime/" + projectId, function(data) {
+                $.get("Projects/gettime/" + projectId, function (data) {
                     el.text(data.Elapsed);
                 });
             } else {

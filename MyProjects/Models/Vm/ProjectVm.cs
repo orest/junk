@@ -13,8 +13,8 @@ namespace MyProjects.Models
         {
             ProjectStatuses = new List<SelectListItem>()
             {
-                new SelectListItem() {Value = "ACTV", Text = "Active"},
-                new SelectListItem() {Value = "CMLT", Text = "Completed"},
+                new SelectListItem() {Value = "1", Text = "Active"},
+                new SelectListItem() {Value = "2", Text = "Completed"},
             };
 
         }

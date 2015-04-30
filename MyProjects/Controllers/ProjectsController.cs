@@ -20,10 +20,14 @@ namespace MyProjects.Controllers
         private TimeTrakerContext db = new TimeTrakerContext();
 
         // GET: Projects
-        public ActionResult Index()
+        public ActionResult Index(bool activeOnly=true)
         {
-            var projects = db.Projects.Include(p => p.Client).Include(p => p.TimeSheet).OrderByDescending(p => p.Rate).ToList();
+            var query = db.Projects.Include(p => p.Client).Include(p => p.TimeSheet);              
+            if (activeOnly)
+                query = query.Where(p => p.ProjectStatusId == 1);
 
+            query = query.OrderByDescending(p => p.Rate);
+            var projects = query.ToList();
             var pr = projects.Select(p => new ProjectVm()
             {
                 Project = p
@@ -85,6 +89,11 @@ namespace MyProjects.Controllers
                 return HttpNotFound();
             }
             ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "CompanyName", project.ClientId);
+            ViewBag.ProjectStatus = new List<SelectListItem>
+            {
+                new SelectListItem() {Value = "1", Text = "Active"},
+                new SelectListItem() {Value = "2", Text = "Completed"},
+            };
             return View(project);
         }
 
