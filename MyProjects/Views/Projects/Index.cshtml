@@ -60,7 +60,7 @@
             <td>
                 @if (item.HasActiveLog)
                 {
-                    <span data-id="@item.Project.ProjectId" class="active-project">0</span> @:minutes
+                    <span data-id="@item.Project.ProjectId" class="active-project">0</span> 
                 }
             </td>
             <td>
@@ -121,7 +121,9 @@
             if (el && el.length > 0) {
                 var projectId = $(".active-project").data("id");
                 $.get("Projects/gettime/" + projectId, function (data) {
-                    el.text(data.Elapsed);
+                    var elapsedMinutes = data.Elapsed;
+                    var elapsedHours = elapsedMinutes / 60;
+                    el.text(elapsedMinutes + " minutes ( " + elapsedHours.toFixed(2) + ")");
                 });
             } else {
                 clearInterval(intervalId);
