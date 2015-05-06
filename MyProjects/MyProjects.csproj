@@ -238,6 +238,10 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="images\note-blue.png" />
+    <Content Include="images\note-green.png" />
+    <Content Include="images\note-orange.png" />
+    <Content Include="images\note-yellow.png" />
     <Content Include="Index.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-cookies.js" />

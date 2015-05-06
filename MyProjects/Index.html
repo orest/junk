@@ -32,6 +32,7 @@
 
         <div class="container">
             <div class="row">
+
                 <div class="col-lg-8">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
@@ -40,12 +41,18 @@
                                     <div class="pull-left">
 
                                         <div class="large"> Some very awesome project </div>
+                                        <div class=" small">Client name</div>
 
                                     </div>
                                     <div class="pull-right">
-                                        <button class="btn btn-warning  padWide btn-sm">
+                                        (128m / 2.2h )
+                                        <button class="btn btn-success  padWide btn-sm">
                                             <span class="glyphicon glyphicon-play"></span>
                                             &nbsp; Start
+                                        </button>
+                                        <button class="btn btn-warning  padWide btn-sm">
+                                            <span class="glyphicon glyphicon-pause"></span>
+                                            &nbsp; Pause
                                         </button>
 
                                         <button class="btn btn-danger  padWide  btn-sm">
@@ -87,15 +94,14 @@
                         </div>
                     </div>
 
-                    <div class="panel panel-primary">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="pull-left">
-                                        <span class="clickable"><i class="glyphicon glyphicon-chevron-up"></i></span> &nbsp;&nbsp;&nbsp;
-                                        Some very awesome project
-
-                                    </div>
+                                        <div class="clickable pull-left "><i class="glyphicon glyphicon-chevron-up"></i></div>
+                                        <div class="large pull-left padL8"> Some very awesome project</div>
+                                        </div>
                                     <div class="pull-right">
                                         <button class="btn btn-success btn-sm padWide">
                                             <span class="glyphicon glyphicon-play"></span>
@@ -105,7 +111,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel-body ">
+                        <div class="panel-body collapse">
                             <ul class="list-unstyled">
                                 <li><input type="checkbox" /> Task 1 </li>
                                 <li><input type="checkbox" /> Task 2 </li>
@@ -132,13 +138,32 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="panel panel-primary">
-                        <div class="panel-heading">Messages</div>
+                        <div class="panel-heading">To Dos</div>
                         <div class="panel-body">
-                            <div class="alert alert-danger"> Some Important message </div>
-                            <div class="alert alert-warning"> Some not so important message </div>
+                            <ul class="list-group">
+                                <li class="list-group-item list-group-item-danger"> <input type="checkbox" class="checkbox checkbox-inline " /> Code This </li>
+                                <li class="list-group-item list-group-item-warning"><input type="checkbox" class="checkbox checkbox-inline " />  Code Code that  </li>
+                                <li class="list-group-item list-group-item-success"><input type="checkbox" class="checkbox checkbox-inline " checked="" />  Code Code that 2  </li>
+                                <li class="list-group-item "><input type="checkbox" class="checkbox checkbox-inline " checked="" />Code Code that 2  </li>
+                            </ul>
                         </div>
                     </div>
-        
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Messages</div>
+                        <div class="panel-body text-center">
+                            <div class="note note-orange">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <div>Some Important message</div>
+                            </div>
+
+                            <div class="note note-yellow">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <div>Some not so important message</div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

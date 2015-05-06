@@ -26,5 +26,34 @@
 }
 
 .large {
-    font-size: 21px;
+    font-size: 16px;
+}
+.small {
+    font-size: 10px
+}
+
+.note {
+  display: inline-block;
+    text-align: left;
+  height: 265px;
+  padding: 16px 20px;
+  position: relative;
+  vertical-align: text-top;
+  width: 160px;
+}
+.note div{ padding-top: 16px;}
+.note-yellow {
+  background: url(../images/note-yellow.png) no-repeat;
+}
+
+.note-blue {
+  background: url(../images/note-blue.png) no-repeat;
+}
+
+.note-orange {
+  background: url(../images/note-orange.png) no-repeat;
+}
+
+.note-green {
+  background: url(../images/note-green.png) no-repeat;
 }
