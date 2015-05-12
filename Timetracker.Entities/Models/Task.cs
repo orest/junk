@@ -8,6 +8,7 @@
         public int ProjectId { get; set; }
         public string Notes { get; set; }        
         public Project Project { get; set; }
+
         
     }
 }

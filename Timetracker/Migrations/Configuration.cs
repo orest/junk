@@ -1,3 +1,5 @@
+using Timetracker.Data;
+
 namespace MyProjects.Migrations
 {
     using System;
@@ -5,7 +7,7 @@ namespace MyProjects.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<MyProjects.Data.TimeTrakerContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<TimeTrakerContext>
     {
         public Configuration()
         {
@@ -14,7 +16,7 @@ namespace MyProjects.Migrations
             ContextKey = "MyProjects.Data.TimeTrakerContext";
         }
 
-        protected override void Seed(MyProjects.Data.TimeTrakerContext context)
+        protected override void Seed(TimeTrakerContext context)
         {
             //  This method will be called after migrating to the latest version.
 

@@ -6,8 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MyProjects.Data;
 using MyProjects.Models;
+using Timetracker.Data;
 using Timetracker.Entities.Models;
 
 namespace MyProjects.Controllers
@@ -40,6 +40,9 @@ namespace MyProjects.Controllers
         // GET: Clients/Create
         public ActionResult Create()
         {
+            var list = db.TimesheetCodes.ToList();
+            ViewBag.TimesheetCode = new SelectList(list, "Code", "Description");
+            ViewBag.TimesheetFrequencyCode = db.Frequency.ToList().Select(f => new SelectListItem { Value = f.Code.ToString(), Text = f.Description });
             return View();
         }
 
@@ -48,7 +51,7 @@ namespace MyProjects.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ClientId,CompanyName,ContactName,Phone,Email,Rate,TimesheetCode,TimesheetFrequencyCode,Notes")] Client client)
+        public ActionResult Create(Client client)
         {
             if (ModelState.IsValid)
             {

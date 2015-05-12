@@ -9,21 +9,21 @@ using System.Web;
 using System.Web.Helpers;
 using System.Web.Http.Results;
 using System.Web.Mvc;
-using MyProjects.Data;
 using MyProjects.Helpers;
 using MyProjects.Models;
+using Timetracker.Data;
 using Timetracker.Entities.Models;
 
 namespace MyProjects.Controllers
 {
-    public class ProjectsController : Controller
+    public class ProjectsController : BaseController
     {
         private TimeTrakerContext db = new TimeTrakerContext();
 
         // GET: Projects
-        public ActionResult Index(bool activeOnly=true)
+        public ActionResult Index(bool activeOnly = true)
         {
-            var query = db.Projects.Include(p => p.Client).Include(p => p.TimeSheet);              
+            var query = db.Projects.Include(p => p.Client).Include(p => p.TimeSheet);
             if (activeOnly)
                 query = query.Where(p => p.ProjectStatusId == 1);
 
@@ -55,6 +55,7 @@ namespace MyProjects.Controllers
         // GET: Projects/Create
         public ActionResult Create()
         {
+            ViewBag.ProjectStatusId = LookProjectStatus.ToSelectList();
             ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "CompanyName");
             return View();
         }
@@ -90,11 +91,7 @@ namespace MyProjects.Controllers
                 return HttpNotFound();
             }
             ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "CompanyName", project.ClientId);
-            ViewBag.ProjectStatus = new List<SelectListItem>
-            {
-                new SelectListItem() {Value = "1", Text = "Active"},
-                new SelectListItem() {Value = "2", Text = "Completed"},
-            };
+            ViewBag.ProjectStatus = LookProjectStatus.ToSelectList();
             return View(project);
         }
 
@@ -112,6 +109,7 @@ namespace MyProjects.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "CompanyName", project.ClientId);
+            ViewBag.ProjectStatus = LookProjectStatus.ToSelectList();
             return View(project);
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Timetracker.Entities.Models.Lookup;
 
 namespace Timetracker.Entities.Models
 {
@@ -30,6 +31,7 @@ namespace Timetracker.Entities.Models
 
         public List<Task> Tasks { get; set; }
         public Client Client { get; set; }
+        public ProjectStatus ProjectStatus { get; set; }
         public List<WorkLog> TimeSheet { get; set; }
 
     }

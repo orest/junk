@@ -10,14 +10,12 @@ namespace MyProjects.Models
 {
     public class ProjectVm
     {
+        
         public  ProjectVm()
         {
-            ProjectStatuses = new List<SelectListItem>()
-            {
-                new SelectListItem() {Value = "1", Text = "Active"},
-                new SelectListItem() {Value = "2", Text = "Completed"},
-            };
+            
 
+            
         }
         public Project Project { get; set; }
         public bool HasActiveLog {
@@ -53,7 +51,9 @@ namespace MyProjects.Models
                 return total.ToString("N1");
             }
         }
+
         public IEnumerable<SelectListItem> ProjectStatuses { get; set; }
+        
 
     }
 }
