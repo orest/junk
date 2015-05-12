@@ -1,4 +1,5 @@
 using Timetracker.Data;
+using Timetracker.Entities.Models.Lookup;
 
 namespace MyProjects.Migrations
 {
@@ -18,18 +19,25 @@ namespace MyProjects.Migrations
 
         protected override void Seed(TimeTrakerContext context)
         {
-            //  This method will be called after migrating to the latest version.
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            context.ProjectStatuses.AddOrUpdate(
+                p => p.Id,
+                new ProjectStatus { Id = 1, Description = "Active" },
+                new ProjectStatus { Id = 2, Description = "Completed" });
+
+            context.Frequency.AddOrUpdate(
+                p => p.Code,
+                new Frequency { Code = "MNTH", Description = "Monthly" },
+                new Frequency { Code = "WEEK", Description = "Weekly" });
+
+            context.TimesheetCodes.AddOrUpdate(
+                p => p.Code,
+                new TimesheetCode() { Code = "ELNC", Description = "Elance " },
+                new TimesheetCode() { Code = "INVCE", Description = "Invoice " },
+                new TimesheetCode() { Code = "UPWRK", Description = "Upwork Former oDesk " }
+                );
+
+
         }
     }
 }
