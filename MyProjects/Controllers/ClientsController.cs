@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using MyProjects.Data;
 using MyProjects.Models;
+using Timetracker.Entities.Models;
 
 namespace MyProjects.Controllers
 {
