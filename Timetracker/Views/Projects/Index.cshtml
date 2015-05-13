@@ -17,9 +17,9 @@
     <div class="col-md-3"></div>
 </div>
 <p class="text-right">
-    
+
     <a class="btn btn-success" href="@Url.Action("Create")">
-        <span class="glyphicon glyphicon-plus-sign"></span> Create New 
+        <span class="glyphicon glyphicon-plus-sign"></span> Create New
     </a>
 </p>
 <table class="table table-striped">
@@ -60,7 +60,7 @@
             <td>
                 @if (item.HasActiveLog)
                 {
-                    <span data-id="@item.Project.ProjectId" class="active-project">0</span> 
+                    <span data-id="@item.Project.ProjectId" class="active-project">0</span>
                 }
             </td>
             <td>
@@ -103,10 +103,7 @@
         $(function () {
 
             $(".stop").on("click", function () {
-
                 $("#id").val($(this).data("id"));
-
-
                 $('#modConfirm').modal({
                     keyboard: false
                 });
@@ -124,6 +121,7 @@
                     var elapsedMinutes = data.Elapsed;
                     var elapsedHours = elapsedMinutes / 60;
                     el.text(elapsedMinutes + " minutes ( " + elapsedHours.toFixed(2) + ")");
+                    $("#time").val(elapsedMinutes + 1);
                 });
             } else {
                 clearInterval(intervalId);

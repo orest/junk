@@ -14,6 +14,6 @@ angular.module("timeTracker", ['ngResource', 'ngRoute', 'ngCookies', 'ngTable', 
         cfpLoadingBarProvider.includeSpinner = false;
     });
 
-angular.module("jogTracker").factory('moment', function () {
+angular.module("timeTracker").factory('moment', function () {
     return window.moment;
 });

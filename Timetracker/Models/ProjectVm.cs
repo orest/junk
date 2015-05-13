@@ -13,9 +13,6 @@ namespace Timetracker.Models
         
         public  ProjectVm()
         {
-            
-
-            
         }
         public Project Project { get; set; }
         public bool HasActiveLog {

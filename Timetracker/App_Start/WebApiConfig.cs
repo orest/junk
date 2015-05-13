@@ -14,6 +14,7 @@ namespace Timetracker
         {
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
+            config.Formatters.Remove(config.Formatters.XmlFormatter);   
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 

@@ -172,19 +172,22 @@ namespace Timetracker.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Stop(int id, string note)
+        public ActionResult Stop(int id, string note, int time)
         {
-            ProcessStopForProject(id, note);
+            ProcessStopForProject(id, note, time);
             return RedirectToAction("Index");
         }
 
-        private void ProcessStopForProject(int projectId, string note)
+        private void ProcessStopForProject(int projectId, string note, int time = 0)
         {
             var workItems = db.WorkLogs.Where(w => w.ProjectId == projectId && w.EndDate == null).ToList();
             foreach (var item in workItems)
             {
                 item.EndDate = DateTime.Now;
-                item.ElapsedMinutes = (int)(item.EndDate.Value - item.StartDate).TotalMinutes;
+                if (time > 0)
+                    item.ElapsedMinutes = time;
+                else
+                    item.ElapsedMinutes = (int)(item.EndDate.Value - item.StartDate).TotalMinutes;
                 item.Notes = note;
             }
             db.SaveChanges();

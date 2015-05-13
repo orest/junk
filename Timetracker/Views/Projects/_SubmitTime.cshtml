@@ -14,10 +14,22 @@
                     @Html.Hidden("id")
 
                     <div class="form-horizontal">
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label text-right">Elapsed  Time:</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    @Html.TextBox("time", "", new {id="time", @class = "form-control", rows = "4" })
+                                    <span class="input-group-addon">minutes</span>
+                                </div>
+
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label class="col-md-4 control-label text-right">Notes:</label>
                             <div class="col-md-8">
-                                @Html.TextArea("Note", "", new { @class = "form-control", rows = "4" })
+                                @Html.TextArea("Note", "", new { @class = "form-control col-md-8", rows = "4" })
                             </div>
                         </div>
                     </div>
