@@ -21,14 +21,18 @@ namespace Timetracker.Controllers.api
         // GET: api/Project
         public IHttpActionResult GetProjects()
         {
-            var query = db.Projects.Include(p => p.Client).Include(p => p.TimeSheet);
-            query = query.Where(p => p.ProjectStatusId == 1);
+            var query = db.Projects.Include(p => p.Client)
+                .Include(p => p.TimeSheet)
+                .Include(p=>p.TimeSheet.Select(t=>t.Fragments));
+            query = query.Where(p => p.ProjectStatusId == 1);            
             query = query.OrderByDescending(p => p.Rate);
             var projects = query.ToList();
             var pr = projects.Select(p => new ProjectVm()
             {
                 Project = p
             });
+
+            pr = pr.OrderByDescending(p => p.HasActiveLog).ThenBy(p => p.Project.Rate);
             return Ok(pr);
         }
 

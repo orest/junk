@@ -1,7 +1,7 @@
 ﻿[ng\:cloak], [ng-cloak], .ng-cloak {
     display: none !important;
 }
-
+input.ng-invalid.ng-dirty{border-color: red}
 .padWide {
     padding-left: 16px;
     padding-right: 16px;
@@ -61,3 +61,5 @@
 .note-green {
   background: url(../images/note-green.png) no-repeat;
 }
+
+input.small-input{ width: 150px;}

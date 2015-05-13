@@ -17,6 +17,7 @@ namespace Timetracker.Data
         public DbSet<Project> Projects { get; set; }
         public DbSet<Task> Tasks { get; set; }
         public DbSet<WorkLog> WorkLogs { get; set; }
+        public DbSet<WorkLogFragment> WorkLogFragments { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<TimesheetCode> TimesheetCodes { get; set; }
         public DbSet<Frequency> Frequency { get; set; }

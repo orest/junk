@@ -10,12 +10,13 @@ namespace Timetracker.Models
 {
     public class ProjectVm
     {
-        
-        public  ProjectVm()
+
+        public ProjectVm()
         {
         }
         public Project Project { get; set; }
-        public bool HasActiveLog {
+        public bool HasActiveLog
+        {
             get
             {
                 var hasActive = false;
@@ -26,6 +27,25 @@ namespace Timetracker.Models
                 return hasActive;
             }
         }
+
+        public bool IsPaused
+        {
+            get
+            {
+                if (Project.TimeSheet.Any())
+                {
+                    var activeLog = Project.TimeSheet.FirstOrDefault(t => t.EndDate == null);
+                    if (activeLog != null)
+                    {
+                        var activeFragment = activeLog.Fragments.Where(f => f.EndDate == null);
+                        return !activeFragment.Any();
+                    }
+                }
+
+                return false;
+            }
+        }
+
         public int TotalTime
         {
             get
@@ -34,7 +54,7 @@ namespace Timetracker.Models
                 var total = 0;
                 if (Project.TimeSheet.Any())
                 {
-                    total = Project.TimeSheet.Where(w=>w.WeekId==thisWeek).Sum(t => t.ElapsedMinutes);
+                    total = Project.TimeSheet.Where(w => w.WeekId == thisWeek).Sum(t => t.ElapsedMinutes);
                 }
                 return total;
             }
@@ -44,13 +64,13 @@ namespace Timetracker.Models
         {
             get
             {
-                var total = Convert.ToDecimal(TotalTime)/60;
+                var total = Convert.ToDecimal(TotalTime) / 60;
                 return total.ToString("N1");
             }
         }
 
         public IEnumerable<SelectListItem> ProjectStatuses { get; set; }
-        
+
 
     }
 }

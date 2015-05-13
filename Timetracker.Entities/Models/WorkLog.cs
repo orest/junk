@@ -9,6 +9,7 @@ namespace Timetracker.Entities.Models
         public WorkLog()
         {
             Tasks = new List<Task>();
+            Fragments=new List<WorkLogFragment>();
         }
         public int WorkLogId { get; set; }
         public int ProjectId { get; set; }
@@ -24,6 +25,7 @@ namespace Timetracker.Entities.Models
         public int WeekId { get; set; }
         public string Notes { get; set; }
         public List<Task> Tasks { get; set; }
+        public List<WorkLogFragment> Fragments { get; set; }
         public Project Project { get; set; }
     }
 }

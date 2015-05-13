@@ -3,8 +3,9 @@
     var urls = {
         apiBase: 'http://localhost:6709/api/'
     };
-
+    var refreshInterval = 60000;
     return {
-        urls: urls
+        urls: urls,
+        refreshInterval: refreshInterval
     }
 });
