@@ -1,7 +1,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace MyProjects.Areas.HelpPage
+namespace Timetracker.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration
     {

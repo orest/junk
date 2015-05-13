@@ -28,10 +28,8 @@ namespace Timetracker.Entities.Models
         public decimal? MinHoursPerWeek { get; set; }
         [DataType(DataType.MultilineText)]
         public string Notes { get; set; }
-
         public List<Task> Tasks { get; set; }
         public Client Client { get; set; }
-        public ProjectStatus ProjectStatus { get; set; }
         public List<WorkLog> TimeSheet { get; set; }
 
     }

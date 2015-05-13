@@ -5,10 +5,10 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using MyProjects.Models;
+using Timetracker.Models;
 using Task = System.Threading.Tasks.Task;
 
-namespace MyProjects.Providers
+namespace Timetracker.Providers
 {
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {

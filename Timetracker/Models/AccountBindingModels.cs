@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace MyProjects.Models
+namespace Timetracker.Models
 {
     // Models used as parameters to AccountController actions.
 

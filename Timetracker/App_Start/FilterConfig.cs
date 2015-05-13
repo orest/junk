@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace MyProjects
+namespace Timetracker
 {
     public class FilterConfig
     {

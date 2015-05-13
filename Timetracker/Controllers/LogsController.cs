@@ -6,12 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MyProjects.Helpers;
-using MyProjects.Models;
+using Timetracker.Models;
 using Timetracker.Data;
 using Timetracker.Entities.Models;
+using Timetracker.Helpers;
 
-namespace MyProjects.Controllers
+namespace Timetracker.Controllers
 {
     public class LogsController : Controller
     {

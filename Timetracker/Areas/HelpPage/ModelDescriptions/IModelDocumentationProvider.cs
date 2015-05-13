@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace MyProjects.Areas.HelpPage.ModelDescriptions
+namespace Timetracker.Areas.HelpPage.ModelDescriptions
 {
     public interface IModelDocumentationProvider
     {

@@ -9,12 +9,12 @@ using System.Web;
 using System.Web.Helpers;
 using System.Web.Http.Results;
 using System.Web.Mvc;
-using MyProjects.Helpers;
-using MyProjects.Models;
 using Timetracker.Data;
 using Timetracker.Entities.Models;
+using Timetracker.Helpers;
+using Timetracker.Models;
 
-namespace MyProjects.Controllers
+namespace Timetracker.Controllers
 {
     public class ProjectsController : BaseController
     {

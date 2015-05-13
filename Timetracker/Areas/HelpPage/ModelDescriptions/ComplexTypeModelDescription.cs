@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace MyProjects.Areas.HelpPage.ModelDescriptions
+namespace Timetracker.Areas.HelpPage.ModelDescriptions
 {
     public class ComplexTypeModelDescription : ModelDescription
     {

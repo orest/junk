@@ -14,9 +14,9 @@ namespace Timetracker.Data.Mapping
             HasRequired(t => t.Client)
                 .WithMany(t => t.Projects)
                 .HasForeignKey(d => d.ClientId);
-            HasRequired(t => t.ProjectStatus)
-                .WithMany(t => t.Projects)
-                .HasForeignKey(d => d.ProjectStatusId);
+            //HasRequired(t => t.ProjectStatus)
+            //    .WithMany(t => t.Projects)
+            //    .HasForeignKey(d => d.ProjectStatusId);
 
         }
     }

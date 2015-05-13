@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace MyProjects
+namespace Timetracker
 {
     public class BundleConfig
     {

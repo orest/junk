@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 
-namespace MyProjects.Helpers
+namespace Timetracker.Helpers
 {
     public static class Helper
     {

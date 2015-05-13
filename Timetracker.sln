@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timetracker.Mvc", "Timetracker\Timetracker.Mvc.csproj", "{AA49AF94-6A5D-4537-B630-968EC2E15CE6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5F0CABCF-3B95-4751-9404-035184EED865} = {5F0CABCF-3B95-4751-9404-035184EED865}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timetracker.Entities", "Timetracker.Entities\Timetracker.Entities.csproj", "{7236884F-ED79-4FBA-B33A-36FEFF0913CE}"
 EndProject

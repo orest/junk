@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MyProjects.Models
+namespace Timetracker.Models
 {
     // Models returned by AccountController actions.
 

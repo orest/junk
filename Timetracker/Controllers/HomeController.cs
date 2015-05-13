@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MyProjects.Controllers
+namespace Timetracker.Controllers
 {
     public class HomeController : Controller
     {

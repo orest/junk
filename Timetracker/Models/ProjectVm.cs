@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MyProjects.Helpers;
 using Timetracker.Entities.Models;
+using Timetracker.Helpers;
 
-namespace MyProjects.Models
+namespace Timetracker.Models
 {
     public class ProjectVm
     {

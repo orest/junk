@@ -4,9 +4,9 @@ using System.Linq;
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(MyProjects.Startup))]
+[assembly: OwinStartup(typeof(Timetracker.Startup))]
 
-namespace MyProjects
+namespace Timetracker
 {
     public partial class Startup
     {

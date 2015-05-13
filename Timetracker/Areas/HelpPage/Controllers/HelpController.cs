@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using MyProjects.Areas.HelpPage.ModelDescriptions;
-using MyProjects.Areas.HelpPage.Models;
+using Timetracker.Areas.HelpPage.ModelDescriptions;
+using Timetracker.Areas.HelpPage.Models;
 
-namespace MyProjects.Areas.HelpPage.Controllers
+namespace Timetracker.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.

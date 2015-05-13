@@ -11,10 +11,10 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using MyProjects.Areas.HelpPage.ModelDescriptions;
-using MyProjects.Areas.HelpPage.Models;
+using Timetracker.Areas.HelpPage.ModelDescriptions;
+using Timetracker.Areas.HelpPage.Models;
 
-namespace MyProjects.Areas.HelpPage
+namespace Timetracker.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

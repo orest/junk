@@ -7,9 +7,9 @@ namespace Timetracker.Entities.Models.Lookup
     {
         public ProjectStatus()
         {
-            Projects = new List<Project>();
+       
         }
 
-        public ICollection<Project> Projects { get; set; }
+ 
     }
 }

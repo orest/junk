@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 
-namespace MyProjects.Controllers
+namespace Timetracker.Controllers
 {
     public class InMemoryCache 
     {

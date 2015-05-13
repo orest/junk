@@ -6,11 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MyProjects.Models;
+using Timetracker.Models;
 using Timetracker.Data;
 using Timetracker.Entities.Models;
 
-namespace MyProjects.Controllers
+namespace Timetracker.Controllers
 {
     public class ClientsController : Controller
     {

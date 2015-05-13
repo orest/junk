@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace MyProjects.Areas.HelpPage.ModelDescriptions
+namespace Timetracker.Areas.HelpPage.ModelDescriptions
 {
     internal static class ModelNameHelper
     {

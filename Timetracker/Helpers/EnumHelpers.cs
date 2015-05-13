@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Timetracker.Entities.Models.Base;
 
-namespace MyProjects.Helpers
+namespace Timetracker.Helpers
 {
     public static class EnumHelpers
     {

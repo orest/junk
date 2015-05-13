@@ -1,6 +1,6 @@
 using System;
 
-namespace MyProjects.Areas.HelpPage.ModelDescriptions
+namespace Timetracker.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Describes a type model.

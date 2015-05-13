@@ -3,7 +3,7 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Description;
 
-namespace MyProjects.Areas.HelpPage
+namespace Timetracker.Areas.HelpPage
 {
     public static class ApiDescriptionExtensions
     {

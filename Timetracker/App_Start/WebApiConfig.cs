@@ -6,7 +6,7 @@ using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 
-namespace MyProjects
+namespace Timetracker
 {
     public static class WebApiConfig
     {

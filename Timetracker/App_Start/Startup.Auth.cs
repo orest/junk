@@ -8,10 +8,10 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-using MyProjects.Providers;
-using MyProjects.Models;
+using Timetracker.Models;
+using Timetracker.Providers;
 
-namespace MyProjects
+namespace Timetracker
 {
     public partial class Startup
     {

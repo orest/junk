@@ -7,9 +7,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Timetracker.Data;
 using Timetracker.Entities.Models.Lookup;
-using MyProjects.Helpers;
+using Timetracker.Helpers;
 
-namespace MyProjects.Controllers
+namespace Timetracker.Controllers
 {
     public class BaseController : Controller
     {
