@@ -50,11 +50,13 @@
   <ItemGroup>
     <Compile Include="Mapping\ClientMap.cs" />
     <Compile Include="Mapping\Lookups\FrequencyMap.cs" />
+    <Compile Include="Mapping\Lookups\TaskStatusMap.cs" />
     <Compile Include="Mapping\Lookups\ProjectStatusMap.cs" />
     <Compile Include="Mapping\Lookups\TimesheetCodeMap.cs" />
     <Compile Include="Mapping\ProjectMap.cs" />
     <Compile Include="Mapping\TaskMap.cs" />
     <Compile Include="Mapping\WorkLogMap.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimeTrakerContext.cs" />
   </ItemGroup>

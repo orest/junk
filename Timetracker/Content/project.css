@@ -24,6 +24,15 @@ input.ng-invalid.ng-dirty{border-color: red}
 .padL8 {
     padding-left: 8px
 }
+.padB16 {
+    margin-bottom: 16px
+}
+
+.marginR8 {
+    margin-right: 8px
+}
+
+
 .under {
     border-bottom: 1px solid #00bfff;
     margin-bottom: 4px;

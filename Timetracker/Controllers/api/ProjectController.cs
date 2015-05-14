@@ -22,8 +22,9 @@ namespace Timetracker.Controllers.api
         public IHttpActionResult GetProjects()
         {
             var query = db.Projects.Include(p => p.Client)
-                .Include(p => p.TimeSheet)
-                .Include(p=>p.TimeSheet.Select(t=>t.Fragments));
+                .Include(p => p.TimeSheet)                
+                .Include(p=>p.TimeSheet.Select(t=>t.Fragments))
+                .Include(p => p.Tasks);
             query = query.Where(p => p.ProjectStatusId == 1);            
             query = query.OrderByDescending(p => p.Rate);
             var projects = query.ToList();

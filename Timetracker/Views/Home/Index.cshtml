@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/cerulean_bootstrap.css" rel="stylesheet" />    
+    <link href="~/Content/cerulean_bootstrap.css" rel="stylesheet" />
     <link href="~/Content/loading-bar.css" rel="stylesheet" />
     <link href="~/Content/project.css" rel="stylesheet" />
     <title></title>
@@ -42,8 +42,11 @@
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-lg-12">
+                                        <a data-toggle="collapse" class="btn btn-default btn-sm marginR8 pull-left" href="#prj{{prj.project.projectId}}"> <span class="glyphicon glyphicon-chevron-down"> </span> </a>
                                         <div class="pull-left">
-                                            <div class="large"> {{prj.project.title}} </div>
+                                            <div class="large">
+                                                {{prj.project.title}}
+                                            </div>
                                             <div class=" small">{{prj.project.client.companyName}}</div>
                                         </div>
                                         <div class="pull-right">
@@ -76,12 +79,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel-body" ng-class="{collapse:!prj.stopping}">
-                                <div class="row">
+                            <div class="panel-body collapse" id="prj{{prj.project.projectId}}" ng-class="{in:prj.stopping || prj.hasActiveLog}">
+                                <div class="row" ng-class="{collapse:!prj.stopping}">
                                     <div class="col-lg-12">
-                                        <div ng-form="" name="saveForm">
+                                        <div ng-form="" name="saveForm" class="padB16">
                                             <div class="form-group ">
-
                                                 <label>Elapsed Time</label>
                                                 <div class="input-group ">
                                                     <input type="number" maxlength="4" class="form-control " ng-model="$parent.elapsedTime.minutes" />
@@ -107,7 +109,28 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!---tasks-->
 
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <ul class="list-group">
+                                            <li class="list-group-item " ng-class=" {'list-group-item-warning':task.statusCd=='todo','list-group-item-success':task.statusCd=='cmptd'}"
+                                                ng-repeat="task in prj.project.tasks |orderBy: 'statusCd' ">
+                                                {{task.title}}
+                                                <div class="pull-right"><select ng-change="updateTask(task)" ng-model="task.statusCd" ng-options="item.code as item.description for item in taskStatuses"></select> </div>
+
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-10 col-md-10">
+                                        <input type="text" class=" form-control input-sm" ng-model="prj.newTaskName" placeholder="add new task " />
+                                    </div>
+                                    <div class="col-lg-2 col-md-2">
+                                        <button ng-click="addTask(prj)" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Add task </button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="panel-footer collapse ">
                                 <div class="row">
@@ -171,6 +194,7 @@
 
     <script src="~/app/app.js"></script>
     <script src="~/app/services/globals.js"></script>
+    <script src="~/app/services/modelsService.js"></script>
     <script src="~/app/services/projectService.js"></script>
     <script src="~/app/services/projectCommandService.js"></script>
     <script src="~/app/controllers/ProjectController.js"></script>

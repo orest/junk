@@ -1,14 +1,11 @@
 ﻿angular.module("timeTracker").controller("ProjectController",
-    function ($scope, projectService, projectCommandService, $interval, globals) {
-        var projectCommand = function (id, action, actionDetails) {
-            this.projectId = id;
-            this.action = action;
-            this.actionDetails = actionDetails;
-        }
-
+    function ($scope, projectService, projectCommandService, $interval, globals, models) {
         var timer;
         $scope.projects = [];
         $scope.stopMessage = "";
+        var t = new models.Task();
+        $scope.taskStatuses = t.statuses;
+
         //$scope.projects = projectService.getProjects();
         var getTime = function (prj) {
             var prjCommand = { projectId: prj.project.projectId, action: "time", actionDetails: "" };
@@ -21,22 +18,24 @@
             }
         };
 
-        projectService.getProjects().$promise.then(function (data) {
-            $scope.projects = data;
-            angular.forEach($scope.projects, function (item) {
-                if (item.hasActiveLog) {
-                    getTime(item);
-                    timer = $interval(function () {
+        function refreshProjects() {
+            projectService.getProjects().$promise.then(function (data) {
+                $scope.projects = data;
+                angular.forEach($scope.projects, function (item) {
+                    if (item.hasActiveLog) {
                         getTime(item);
-                    }, globals.refreshInterval);
-                }
+                        timer = $interval(function () {
+                            getTime(item);
+                        }, globals.refreshInterval);
+                    }
+                });
             });
-        });
 
+        }
 
         //Start buttons
         $scope.start = function (p) {
-            var prjCommand = new projectCommand(p.project.projectId, "start");
+            var prjCommand = new models.ProjectCommand(p.project.projectId, "start");
             angular.forEach($scope.projects, function (item) { item.hasActiveLog = false; });
             p.hasActiveLog = true;
             projectCommandService.process(prjCommand);
@@ -48,7 +47,7 @@
         }
         //Restart
         $scope.restart = function (p) {
-            var prjCommand = new projectCommand(p.project.projectId, "restart");
+            var prjCommand = new models.ProjectCommand(p.project.projectId, "restart");
             projectCommandService.process(prjCommand);
             p.isPaused = false;
             timer = $interval(function () {
@@ -56,12 +55,11 @@
             }, globals.refreshInterval);
         }
 
-
         // Stop buttons
         $scope.stop = function (p) {
             var details = { message: $scope.stopMessage, time: $scope.elapsedTime.minutes };
 
-            var prjCommand = new projectCommand(p.project.projectId, "stop", JSON.stringify(details));
+            var prjCommand = new models.ProjectCommand(p.project.projectId, "stop", JSON.stringify(details));
             p.hasActiveLog = false;
             p.stopping = false;
             $scope.stopMessage = "";
@@ -71,12 +69,28 @@
 
         //Pause buttons
         $scope.pause = function (p) {
-            var prjCommand = new projectCommand(p.project.projectId, "pause");
+            var prjCommand = new models.ProjectCommand(p.project.projectId, "pause");
             p.isPaused = true;
             projectCommandService.process(prjCommand);
             cancelTimer();
         }
 
+        //add task
+        $scope.addTask = function (p) {
+            var task = new models.Task(0, p.newTaskName, p.project.projectId);
+            projectService.addTask(task).$promise.then(function () {
+                refreshProjects();
+            });
+            p.newTaskName = "";
+        }
 
+        //add task
+        $scope.updateTask = function (task) {
+            projectService.saveTask(task);
+        }
+
+        
+
+        refreshProjects();
 
     });

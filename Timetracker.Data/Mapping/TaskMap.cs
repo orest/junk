@@ -9,7 +9,7 @@ namespace Timetracker.Data.Mapping
         {
             // Primary Key
             HasKey(t => t.TaskId);
-
+            Property(t => t.StatusCd).HasMaxLength(5);
             
             // Relationships
             HasRequired(t => t.Project)

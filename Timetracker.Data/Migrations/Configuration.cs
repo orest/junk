@@ -1,9 +1,8 @@
 using System.Data.Entity.Migrations;
 using System.Linq;
-using Timetracker.Data;
 using Timetracker.Entities.Models.Lookup;
 
-namespace Timetracker.Migrations
+namespace Timetracker.Data.Migrations
 {
     internal sealed class Configuration : DbMigrationsConfiguration<TimeTrakerContext>
     {
@@ -19,8 +18,19 @@ namespace Timetracker.Migrations
 
             if (!context.ProjectStatuses.Any())
             {
-                context.ProjectStatuses.Add(new ProjectStatus { Id = 1, Description = "Active" });
-                context.ProjectStatuses.Add(new ProjectStatus { Id = 2, Description = "Completed" });
+                context.ProjectStatuses.Add(new ProjectStatus { Code = "ACTV", Description = "Active" });
+                context.ProjectStatuses.Add(new ProjectStatus { Code = "CMPTD", Description = "Completed" });
+
+            }
+
+
+            if (!context.TaskStatuses.Any())
+            {
+                context.TaskStatuses.Add(new TaskStatus { Code = "TODO", Description = "ToDo" });
+                context.TaskStatuses.Add(new TaskStatus { Code = "ACTV", Description = "Active" });
+                context.TaskStatuses.Add(new TaskStatus { Code = "INPR", Description = "In Progress" });
+                context.TaskStatuses.Add(new TaskStatus { Code = "CMPTD", Description = "Completed" });                
+                
             }
 
             context.Frequency.AddOrUpdate(

@@ -2,14 +2,12 @@
 
     var baseUrl = globals.urls.apiBase + "project/";
     var resource = $resource(baseUrl + ":id", { id: '@id' });
+    var taskResource = $resource(globals.urls.apiBase + "tasks/" + ":id", { id: '@id' });
 
     function getProjects() {
         return resource.query();
     }
 
-    //function getEntriesObj() {
-    //    return $http.get(baseUrl);
-    //}
 
     function findByDate(startDate, endDate) {
         return resource.query({ endDate: endDate, startDate: startDate });
@@ -23,6 +21,7 @@
         return resource.save(project);
     };
 
+
     function remove(project) {
         return resource.delete({ id: project.Id });
     };
@@ -30,6 +29,16 @@
     function update(project) {
         var r = $resource(baseUrl, null, { 'update': { method: 'PUT' } });
         return r.update(project);
+    };
+
+    function addTask(task) {
+        return taskResource.save(task);
+    };
+
+    function saveTask(task) {
+        var $id = task.taskId;
+        var r = $resource(globals.urls.apiBase + "tasks/:id", null, { 'update': { method: 'PUT' } });
+        return r.update({ id: $id }, task);
     }
 
 
@@ -37,6 +46,8 @@
         getProject: getProject,
         getProjects: getProjects,
         save: save,
+        addTask: addTask,
+        saveTask: saveTask,
         update: update,
         remove: remove,
         findByDate: findByDate

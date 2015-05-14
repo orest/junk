@@ -22,17 +22,20 @@ namespace Timetracker.Data
         public DbSet<TimesheetCode> TimesheetCodes { get; set; }
         public DbSet<Frequency> Frequency { get; set; }
         public DbSet<ProjectStatus> ProjectStatuses { get; set; }
-                    
+        public DbSet<TaskStatus> TaskStatuses { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new ClientMap());
-            modelBuilder.Configurations.Add(new FrequencyMap());
-            modelBuilder.Configurations.Add(new ProjectStatusMap());
-            modelBuilder.Configurations.Add(new TimesheetCodeMap());
             modelBuilder.Configurations.Add(new ProjectMap());
             modelBuilder.Configurations.Add(new TaskMap());
             modelBuilder.Configurations.Add(new WorkLogMap());
+
+            modelBuilder.Configurations.Add(new ProjectStatusMap());
+            modelBuilder.Configurations.Add(new TimesheetCodeMap());
+            modelBuilder.Configurations.Add(new TaskStatusMap());
+            modelBuilder.Configurations.Add(new FrequencyMap());
         }
     }
 }
