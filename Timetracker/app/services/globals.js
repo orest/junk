@@ -1,7 +1,7 @@
 ﻿angular.module("timeTracker").factory('globals', function () {
 
     var urls = {
-        apiBase: 'http://localhost:6709/api/'
+        apiBase: 'api/'
     };
     var refreshInterval = 60000;
     return {

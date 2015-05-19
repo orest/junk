@@ -14,6 +14,7 @@ namespace Timetracker.Entities.Models
         }
         public int ClientId { get; set; }
         public int ProjectId { get; set; }
+        [Required]
         public string Title { get; set; }
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }

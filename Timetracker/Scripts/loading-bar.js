@@ -183,6 +183,7 @@ angular.module('cfp.loadingBar', [])
         }
 
         var $parent = $document.find($parentSelector).eq(0);
+        //var $parent = angular.element(document.querySelector($parentSelector));
         $timeout.cancel(completeTimeout);
 
         // do not continually broadcast the started event:

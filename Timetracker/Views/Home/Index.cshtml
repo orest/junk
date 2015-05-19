@@ -116,11 +116,18 @@
                                         <ul class="list-group">
                                             <li class="list-group-item clearfix" ng-class=" {'list-group-item-warning':task.statusCd=='todo','list-group-item-success':task.statusCd=='cmptd'}"
                                                 ng-repeat="task in prj.project.tasks |orderBy: 'statusCd' ">
-                                                {{task.title}}
-                                                <div class="pull-right ">
-                                                    <select class="form-control input-sm " ng-change="updateTask(task)" ng-model="task.statusCd"
-                                                            ng-options="item.code as item.description for item in taskStatuses"></select> 
+                                                <div class="row">
+                                                    <div class="col-md-9" ng-dblclick="task.editing=true">
+                                                        <span ng-hide="task.editing">{{task.title}}</span>
+                                                        <input ng-show="task.editing" ng-blur="updateTask(task)" ng-model="task.title" class="form-control " />
+                                                    </div>
+
+                                                    <div class="col-md-3 ">
+                                                        <select class="form-control input-sm " ng-change="updateTask(task)" ng-model="task.statusCd"
+                                                                ng-options="item.code as item.description for item in taskStatuses"></select>
+                                                    </div>
                                                 </div>
+
 
                                             </li>
                                         </ul>
@@ -147,7 +154,7 @@
                     </div>
 
                 </div>
-                <div class="col-lg-4 col-md-4">
+                <div class="col-lg-4 ">
                     <div class="panel panel-primary">
                         <div class="panel-heading">To Dos</div>
                         <div class="panel-body">
@@ -182,18 +189,20 @@
 
     </div>
 
-    <script src="/Scripts/angular.js"></script>
-    <script src="/Scripts/angular-resource.js"></script>
-    <script src="/Scripts/angular-route.js"></script>
-    <script src="/Scripts/angular-cookies.js"></script>
-    <script src="/Scripts/angular-animate.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-resource.js"></script>
+    <script src="~/Scripts/angular-route.js"></script>
+    <script src="~/Scripts/angular-cookies.js"></script>
+    <script src="~/Scripts/angular-animate.js"></script>
 
-    <script src="/Scripts/jquery-2.1.1.js"></script>
-    <script src="/Scripts/bootstrap.js"></script>
-    <script src="/Scripts/moment.js"></script>
-    <script src="/Scripts/datetimepicker.js"></script>
-    <script src="/Scripts/ng-table.js"></script>
-    <script src="/Scripts/loading-bar.js"></script>
+    <script src="~/Scripts/jquery-2.1.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/datetimepicker.js"></script>
+    <script src="~/Scripts/ng-table.js"></script>
+    <script src="~/Scripts/loading-bar.js"></script>
+    
+
 
     <script src="~/app/app.js"></script>
     <script src="~/app/services/globals.js"></script>

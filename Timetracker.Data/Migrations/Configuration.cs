@@ -20,7 +20,6 @@ namespace Timetracker.Data.Migrations
             {
                 context.ProjectStatuses.Add(new ProjectStatus { Code = "ACTV", Description = "Active" });
                 context.ProjectStatuses.Add(new ProjectStatus { Code = "CMPTD", Description = "Completed" });
-
             }
 
 

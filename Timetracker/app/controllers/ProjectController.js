@@ -87,9 +87,10 @@
         //add task
         $scope.updateTask = function (task) {
             projectService.saveTask(task);
+            task.editing = false;
         }
 
-        
+
 
         refreshProjects();
 

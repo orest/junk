@@ -75,6 +75,12 @@ namespace Timetracker.Controllers
             {
                 return HttpNotFound();
             }
+            var list = db.TimesheetCodes.ToList();
+            ViewBag.TimesheetCode = new SelectList(list, "Code", "Description", client.TimesheetCode);
+            ViewBag.TimesheetFrequencyCode = new SelectList(db.Frequency.ToList(), "Code", "Description", client.TimesheetFrequencyCode);
+            //ViewBag.TimesheetFrequencyCode = new SelectList(db.Frequency.ToList()
+            //    .Select(f => new SelectListItem { Value = f.Code.ToString(), Text = f.Description }).ToList(), "Code", "Description", client.TimesheetFrequencyCode);
+
             return View(client);
         }
 
@@ -83,7 +89,7 @@ namespace Timetracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ClientId,CompanyName,ContactName,Phone,Email,Rate,TimesheetCode,TimesheetFrequencyCode,Notes")] Client client)
+        public ActionResult Edit(Client client)
         {
             if (ModelState.IsValid)
             {
