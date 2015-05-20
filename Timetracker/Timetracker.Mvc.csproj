@@ -229,6 +229,7 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\controllers\ProjectController.js" />
+    <Content Include="app\directives\escKey.js" />
     <Content Include="app\main.js" />
     <Content Include="app\services\modelsService.js" />
     <Content Include="app\services\globals.js" />
@@ -327,7 +328,6 @@
     <Content Include="Views\Logs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\directives\" />
     <Folder Include="app\partials\" />
     <Folder Include="App_Data\" />
   </ItemGroup>

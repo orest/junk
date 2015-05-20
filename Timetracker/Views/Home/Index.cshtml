@@ -119,9 +119,9 @@
                                             <li class="list-group-item clearfix" ng-class=" {'list-group-item-warning':task.statusCd=='todo','list-group-item-success':task.statusCd=='cmptd'}"
                                                 ng-repeat="task in prj.project.tasks |orderBy: 'statusCd' ">
                                                 <div class="row">
-                                                    <div class="col-md-9" ng-dblclick="task.editing=true">
+                                                    <div class="col-md-9" ng-click="task.editing=true;task.newTitle=task.title; ">
                                                         <span ng-hide="task.editing">{{task.title}}</span>
-                                                        <input ng-show="task.editing" ng-blur="updateTask(task)" ng-model="task.title" class="form-control " />
+                                                        <input ng-show="task.editing" enter-key="updateTask(task)" ng-model="task.newTitle" class="form-control" esc-key="cancelTask(task)" />
                                                     </div>
 
                                                     <div class="col-md-3 ">
@@ -222,6 +222,7 @@
     <script src="~/app/services/projectCommandService.js"></script>
     <script src="~/app/controllers/ProjectController.js"></script>
     <script src="~/app/services/todoService.js"></script>
+    <script src="~/app/directives/escKey.js"></script>
     <!--<script src="~/app/controllers/JogTrackerController.js"></script>
     <script src="~/app/controllers/AccountController.js"></script>
     <script src="~/app/controllers/EditProfileController.js"></script>

@@ -87,10 +87,17 @@
             p.newTaskName = "";
         }
 
-        //add task
+        //updateTask task
         $scope.updateTask = function (task) {
+            task.title = task.newTitle;
             projectService.saveTask(task);
             task.editing = false;
+        }
+
+        //cancel task
+        $scope.cancelTask = function (task) {            
+            task.editing = false;
+            
         }
 
         //add todos
