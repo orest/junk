@@ -1,16 +1,18 @@
 ﻿angular.module("timeTracker").controller("ProjectController",
-    function ($scope, projectService, projectCommandService, $interval, globals, models) {
+    function ($scope, projectService, projectCommandService, todoService, $interval, globals, models) {
         var timer;
         $scope.projects = [];
         $scope.stopMessage = "";
         var t = new models.Task();
-        $scope.taskStatuses = t.statuses;
 
-        //$scope.projects = projectService.getProjects();
+        $scope.taskStatuses = t.statuses;
+        $scope.todos = todoService.getAllTodos();
+
         var getTime = function (prj) {
             var prjCommand = { projectId: prj.project.projectId, action: "time", actionDetails: "" };
             $scope.elapsedTime = projectCommandService.process(prjCommand);
         },
+
         cancelTimer = function () {
             if (angular.isDefined(timer)) {
                 $interval.cancel(timer);
@@ -18,6 +20,7 @@
             }
         };
 
+        //refresh projects
         function refreshProjects() {
             projectService.getProjects().$promise.then(function (data) {
                 $scope.projects = data;
@@ -90,8 +93,15 @@
             task.editing = false;
         }
 
+        //add todos
+        $scope.addTodo = function () {
+            var todo = new models.Todo(0, $scope.newTodo);
+            todoService.addTodo(todo);
+            $scope.todos.push(todo);
+            $scope.newTodo = "";
+        }
 
 
         refreshProjects();
-
+       
     });

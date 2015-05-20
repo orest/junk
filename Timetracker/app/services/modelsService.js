@@ -6,6 +6,14 @@
         this.actionDetails = actionDetails;
     }
 
+    var todo = function (id, title) {
+        this.id = id;
+        this.title = title;
+        this.isCompleted = false;
+        this.Priority = 5;
+    }
+
+
     var task = function (id, title, projectId) {
         this.taskId = id;
         this.priority = 1;
@@ -21,6 +29,7 @@
     }
     return {
         Task: task,
-        ProjectCommand: projectCommand
+        ProjectCommand: projectCommand,
+        Todo: todo
     }
 });

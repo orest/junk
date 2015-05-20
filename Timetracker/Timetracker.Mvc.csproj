@@ -202,6 +202,7 @@
     <Compile Include="Controllers\api\ProjectCommandController.cs" />
     <Compile Include="Controllers\api\ProjectController.cs" />
     <Compile Include="Controllers\api\TasksController.cs" />
+    <Compile Include="Controllers\api\ToDoController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -232,6 +233,7 @@
     <Content Include="app\services\modelsService.js" />
     <Content Include="app\services\globals.js" />
     <Content Include="app\services\projectCommandService.js" />
+    <Content Include="app\services\todoService.js" />
     <Content Include="app\services\projectService.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
