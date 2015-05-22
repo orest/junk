@@ -1,5 +1,5 @@
 ﻿angular.module("timeTracker").controller("ProjectController",
-    function ($scope, projectService, projectCommandService, todoService, $interval, globals, models, _) {
+    function ($scope, projectService, projectCommandService, todoService, $interval, globals, models, _, statsService) {
         var timer;
         $scope.projects = [];
         $scope.stopMessage = "";
@@ -25,9 +25,7 @@
         function refreshProjects() {
             projectService.getProjects().$promise.then(function (data) {
                 $scope.projects = data;
-                var weekTotal = 0;
                 angular.forEach($scope.projects, function (item) {
-                    weekTotal += Number(item.totalHours);
                     if (item.hasActiveLog) {
                         getTime(item);
                         timer = $interval(function () {
@@ -35,7 +33,6 @@
                         }, globals.refreshInterval);
                     }
                 });
-                $scope.weekTotal = weekTotal;
             });
 
         }
@@ -138,10 +135,10 @@
             containment: "parent",//Dont let the user drag outside the parent
             cursor: "move",
             tolerance: "pointer",
-            stop: function (e, ui) {          
+            stop: function (e, ui) {
                 var counter = 1;
                 _.each($scope.todos, function (item) {
-                    if (todoPriority[item.id] !=counter) {
+                    if (todoPriority[item.id] != counter) {
                         todoPriority[item.id] = counter;
                         item.priority = counter;
                         $scope.changeToDo(item);
@@ -150,5 +147,14 @@
                 });
             }
         };
+
+        statsService.get('weeklyreport').$promise.then(function (data) {
+            $scope.stat = data;
+            var total = _.reduce($scope.stat, function (num, item) {
+                return num + Number(item.elapsed);
+            }, 0);
+            $scope.weekTotal = total;
+        });
+
 
     });

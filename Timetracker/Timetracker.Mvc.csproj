@@ -201,6 +201,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\ProjectCommandController.cs" />
     <Compile Include="Controllers\api\ProjectController.cs" />
+    <Compile Include="Controllers\api\StatsController.cs" />
     <Compile Include="Controllers\api\TasksController.cs" />
     <Compile Include="Controllers\api\ToDoController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -219,8 +220,10 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\StatsActions.cs" />
     <Compile Include="Models\ProductCommand.cs" />
     <Compile Include="Models\ProjectVm.cs" />
+    <Compile Include="Models\StatsCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -234,6 +237,7 @@
     <Content Include="app\services\modelsService.js" />
     <Content Include="app\services\globals.js" />
     <Content Include="app\services\projectCommandService.js" />
+    <Content Include="app\services\statsService.js" />
     <Content Include="app\services\todoService.js" />
     <Content Include="app\services\projectService.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />

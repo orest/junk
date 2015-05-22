@@ -59,7 +59,7 @@ input.ng-invalid.ng-dirty{border-color: red}
 .note-blue {background: url(../images/note-blue.png) no-repeat;}
 .note-orange {background: url(../images/note-orange.png) no-repeat;}
 .note-green {background: url(../images/note-green.png) no-repeat;}
-.prj .text-primary{color: white}
+.prj.panel-primary .text-primary{color: white}
 input.small-input{ width: 150px;}
 
 .todo .p-0 {background: #FF0a00}
