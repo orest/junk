@@ -23,7 +23,8 @@ namespace Timetracker.Controllers
         // GET: Projects
         public ActionResult Index(bool activeOnly = true)
         {
-            var query = db.Projects.Include(p => p.Client).Include(p => p.TimeSheet);
+            var query = db.Projects.Include(p => p.Client)
+                .Include(p => p.TimeSheet);
             if (activeOnly)
                 query = query.Where(p => p.ProjectStatusId == 1);
 
@@ -180,14 +181,17 @@ namespace Timetracker.Controllers
 
         private void ProcessStopForProject(int projectId, string note, int time = 0)
         {
-            var workItems = db.WorkLogs.Where(w => w.ProjectId == projectId && w.EndDate == null).ToList();
+            var workItems = db.WorkLogs.Where(w => w.ProjectId == projectId
+                && w.EndDate == null).ToList();
             foreach (var item in workItems)
             {
                 item.EndDate = DateTime.Now;
                 if (time > 0)
                     item.ElapsedMinutes = time;
                 else
-                    item.ElapsedMinutes = (int)(item.EndDate.Value - item.StartDate).TotalMinutes;
+                    item.ElapsedMinutes =
+                        (int)(item.EndDate.Value - item.StartDate)
+                        .TotalMinutes;
                 item.Notes = note;
             }
             db.SaveChanges();

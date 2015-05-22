@@ -1,12 +1,13 @@
 ﻿angular.module("timeTracker").controller("ProjectController",
-    function ($scope, projectService, projectCommandService, todoService, $interval, globals, models) {
+    function ($scope, projectService, projectCommandService, todoService, $interval, globals, models, _) {
         var timer;
         $scope.projects = [];
         $scope.stopMessage = "";
         var t = new models.Task();
-
         $scope.taskStatuses = t.statuses;
-        $scope.todos = todoService.getAllTodos();
+        $scope.todoState = "ACTV";
+        $scope.weekTotal = 0;
+        var todoPriority = [];
 
         var getTime = function (prj) {
             var prjCommand = { projectId: prj.project.projectId, action: "time", actionDetails: "" };
@@ -24,7 +25,9 @@
         function refreshProjects() {
             projectService.getProjects().$promise.then(function (data) {
                 $scope.projects = data;
+                var weekTotal = 0;
                 angular.forEach($scope.projects, function (item) {
+                    weekTotal += Number(item.totalHours);
                     if (item.hasActiveLog) {
                         getTime(item);
                         timer = $interval(function () {
@@ -32,6 +35,7 @@
                         }, globals.refreshInterval);
                     }
                 });
+                $scope.weekTotal = weekTotal;
             });
 
         }
@@ -89,26 +93,62 @@
 
         //updateTask task
         $scope.updateTask = function (task) {
-            task.title = task.newTitle;
-            projectService.saveTask(task);
+            if (task.newTitle) {
+                task.title = task.newTitle;
+                projectService.saveTask(task);
+            }
             task.editing = false;
         }
 
         //cancel task
-        $scope.cancelTask = function (task) {            
+        $scope.cancelTask = function (task) {
             task.editing = false;
-            
-        }
 
+        }
+        $scope.changeToDo = function (todo) {
+            todoService.update(todo);
+        }
         //add todos
         $scope.addTodo = function () {
             var todo = new models.Todo(0, $scope.newTodo);
+            todo.priority = $scope.todos.length;
             todoService.addTodo(todo);
             $scope.todos.push(todo);
             $scope.newTodo = "";
         }
 
+        $scope.showActiveToDos = function () {
+            todoService.getActiveTodos().$promise.then(function (data) {
+                $scope.todos = data;
+                _.each(data, function (item) {
+                    todoPriority[item.id] = item.priority;
+                });
+            });
+            $scope.todoState = "ACTV";
+        }
+
+        $scope.showAllToDos = function () {
+            $scope.todos = todoService.getAllTodos();
+            $scope.todoState = "ALL";
+        }
 
         refreshProjects();
-       
+        $scope.showActiveToDos();
+        $scope.todoSortable = {
+            containment: "parent",//Dont let the user drag outside the parent
+            cursor: "move",
+            tolerance: "pointer",
+            stop: function (e, ui) {          
+                var counter = 1;
+                _.each($scope.todos, function (item) {
+                    if (todoPriority[item.id] !=counter) {
+                        todoPriority[item.id] = counter;
+                        item.priority = counter;
+                        $scope.changeToDo(item);
+                    }
+                    counter++;
+                });
+            }
+        };
+
     });

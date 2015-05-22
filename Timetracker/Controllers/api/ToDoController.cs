@@ -18,9 +18,12 @@ namespace Timetracker.Controllers.api
         private TimeTrakerContext db = new TimeTrakerContext();
 
         // GET: api/ToDo
-        public IEnumerable<ToDo> GetTodos()
+        public IEnumerable<ToDo> GetTodos(bool activeOnly = true)
         {
-            return db.Todos.ToList();
+            var query = activeOnly ? db.Todos.Where(c=>!c.IsCompleted) : db.Todos;
+            query = query.OrderBy(p => p.Priority);
+
+            return query.ToList();
         }
 
         // GET: api/ToDo/5

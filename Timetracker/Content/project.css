@@ -11,8 +11,8 @@ input.ng-invalid.ng-dirty{border-color: red}
     width: 50%;
 }
 
-.width100p {
-    width: 100% !important;
+.width100px {
+    width: 100px !important;
 }
 .skiny-input {
     height: 25px;
@@ -55,20 +55,17 @@ input.ng-invalid.ng-dirty{border-color: red}
   width: 160px;
 }
 .note div{ padding-top: 16px;}
-.note-yellow {
-  background: url(../images/note-yellow.png) no-repeat;
-}
-
-.note-blue {
-  background: url(../images/note-blue.png) no-repeat;
-}
-
-.note-orange {
-  background: url(../images/note-orange.png) no-repeat;
-}
-
-.note-green {
-  background: url(../images/note-green.png) no-repeat;
-}
-
+.note-yellow {background: url(../images/note-yellow.png) no-repeat;}
+.note-blue {background: url(../images/note-blue.png) no-repeat;}
+.note-orange {background: url(../images/note-orange.png) no-repeat;}
+.note-green {background: url(../images/note-green.png) no-repeat;}
+.prj .text-primary{color: white}
 input.small-input{ width: 150px;}
+
+.todo .p-0 {background: #FF0a00}
+.todo .p-1 {background: #FF4600}
+.todo .p-2 {background: #FF6e00}
+.todo .p-3 {background: #FF6e00}
+.todo .p-4 {background: #FF9600}
+.todo .p-5 {background: #FFbe00}
+.todo .p-6 {background: #FFf000}

@@ -3,12 +3,12 @@
     var baseUrl = globals.urls.apiBase + "todo/";
     var resource = $resource(baseUrl + ":id", { id: '@id' });
 
-    function getActiveTodos() {        
-        return resource.query({ activeOnly: false });
+    function getActiveTodos() {
+        return resource.query({ activeOnly: true });
     }
 
     function getAllTodos() {
-        return resource.query();
+        return resource.query({ activeOnly: false });
     }
 
 
@@ -30,7 +30,7 @@
     return {
         getAllTodos: getAllTodos,
         getActiveTodos: getActiveTodos,
-        getTodo: getTodo,        
+        getTodo: getTodo,
         addTodo: addTodo,
         update: update
     };
