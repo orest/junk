@@ -61,11 +61,21 @@ input.ng-invalid.ng-dirty{border-color: red}
 .note-green {background: url(../images/note-green.png) no-repeat;}
 .prj.panel-primary .text-primary{color: white}
 input.small-input{ width: 150px;}
-
-.todo .p-0 {background: #FF0a00}
-.todo .p-1 {background: #FF4600}
+.new-todo{ margin-bottom: 8px;}
+.todo li{color: white}
+.todo .p-0 { background: #ff0000; }
+.todo .p-1 { background: #FF4600;}
 .todo .p-2 {background: #FF6e00}
 .todo .p-3 {background: #FF6e00}
 .todo .p-4 {background: #FF9600}
 .todo .p-5 {background: #FFbe00}
 .todo .p-6 {background: #FFf000}
+
+
+/*.todo .p-0 { background: #0500ff; color: white}
+.todo .p-1 { background: #0064ff; color: white}
+.todo .p-2 {background: #0064ff}
+.todo .p-3 {background: #0094ff}
+.todo .p-4 {background: #00c4ff}
+.todo .p-5 {background: #00e4ff}
+.todo .p-6 {background: #00e4ff}*/

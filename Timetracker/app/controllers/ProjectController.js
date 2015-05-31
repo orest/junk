@@ -19,7 +19,13 @@
                 $interval.cancel(timer);
                 timer = undefined;
             }
-        };
+        },
+
+        startTimer= function(prj) {
+            timer = $interval(function () {
+                getTime(prj);
+            }, globals.refreshInterval);
+        }
 
         //refresh projects
         function refreshProjects() {
@@ -28,9 +34,7 @@
                 angular.forEach($scope.projects, function (item) {
                     if (item.hasActiveLog) {
                         getTime(item);
-                        timer = $interval(function () {
-                            getTime(item);
-                        }, globals.refreshInterval);
+                        startTimer(item);
                     }
                 });
             });
@@ -59,6 +63,18 @@
             }, globals.refreshInterval);
         }
 
+
+        //stopping
+        $scope.stopping=function(prj) {
+            prj.stopping = true;
+            cancelTimer();
+        }
+
+        //cancel stopping
+        $scope.cancelStopping = function (prj) {
+            prj.stopping = false;
+            startTimer(prj);
+        }
         // Stop buttons
         $scope.stop = function (p) {
             var details = { message: $scope.stopMessage, time: $scope.elapsedTime.minutes };

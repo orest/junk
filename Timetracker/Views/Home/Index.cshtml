@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
+    <link rel="shortcut icon" href="http://localhost/Time/favicon.ico" />
     <link href="~/Content/themes/base/all.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/cerulean_bootstrap.css" rel="stylesheet" />
@@ -76,7 +76,7 @@
                                                     &nbsp; Pause
                                                 </button>
 
-                                                <button ng-click="prj.stopping=true" ng-show="prj.hasActiveLog" class="btn btn-danger  padWide  btn-sm">
+                                                <button ng-click="stopping(prj)" ng-show="prj.hasActiveLog" class="btn btn-danger  padWide  btn-sm">
                                                     <span class="glyphicon glyphicon-stop"></span> &nbsp; Stop
                                                 </button>
                                             </div>
@@ -102,7 +102,7 @@
                                                 <textarea required rows="5" cols="30" class="form-control" ng-model="$parent.stopMessage"></textarea>
                                             </div>
                                             <div class="text-right">
-                                                <button ng-click="prj.stopping=false" class="btn btn-default   ">
+                                                <button ng-click="cancelStopping(prj)" class="btn btn-default   ">
                                                     <span class="glyphicon glyphicon-floppy-disk"></span>  Cancel
                                                 </button>
                                                 <button ng-disabled="saveForm.$invalid" ng-click="stop(prj)" class="btn btn-warning   ">
@@ -163,7 +163,7 @@
                         <div class="panel-heading">To Dos</div>
                         <div class="panel-body">
 
-                            <div class="list-group-item list-group-item-info">
+                            <div class="list-group-item list-group-item-info new-todo">
                                 <form name="newTdForm" ng-submit="addTodo()">
                                     <input placeholder="What needs to be done?" ng-model="newTodo" class="form-control">
                                 </form>
