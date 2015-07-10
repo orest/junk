@@ -91,13 +91,17 @@ namespace Timetracker.Controllers.api
         private void Start(ProjectCommand command)
         {
             //make sure everything is stopped first
-            var openLogs = db.WorkLogs.Where(w => w.EndDate == null).ToList();
-            if (openLogs.Any())
-            {
-                foreach (var item in openLogs)
-                    ProcessStopForProject(item.ProjectId, "");
-
-            }
+            //TODO
+            //var openLogs = db.WorkLogs.Include(w => w.Fragments).Where(w => w.EndDate == null).ToList();
+            //if (openLogs.Any())
+            //{
+            //    foreach (var item in openLogs)
+            //    {
+            //        var activeFragment = item.Fragments.Where(f => f.EndDate == null);
+            //        if (!activeFragment.Any())
+            //            ProcessStopForProject(item.ProjectId, "");
+            //    }
+            //}
 
             var today = DateTime.Now;
             var workLog = new WorkLog()

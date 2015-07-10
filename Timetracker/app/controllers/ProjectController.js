@@ -11,7 +11,8 @@
 
         var getTime = function (prj) {
             var prjCommand = { projectId: prj.project.projectId, action: "time", actionDetails: "" };
-            $scope.elapsedTime = projectCommandService.process(prjCommand);
+            prj.elapsedTime = projectCommandService.process(prjCommand);
+
         },
 
         cancelTimer = function () {
@@ -21,7 +22,7 @@
             }
         },
 
-        startTimer= function(prj) {
+        startTimer = function (prj) {
             timer = $interval(function () {
                 getTime(prj);
             }, globals.refreshInterval);
@@ -47,8 +48,6 @@
             angular.forEach($scope.projects, function (item) { item.hasActiveLog = false; });
             p.hasActiveLog = true;
             projectCommandService.process(prjCommand);
-            $scope.elapsedTime = { minutes: 0, hours: 0 };
-
             timer = $interval(function () {
                 getTime(p);
             }, globals.refreshInterval);
@@ -65,7 +64,7 @@
 
 
         //stopping
-        $scope.stopping=function(prj) {
+        $scope.stopping = function (prj) {
             prj.stopping = true;
             cancelTimer();
         }
@@ -77,7 +76,7 @@
         }
         // Stop buttons
         $scope.stop = function (p) {
-            var details = { message: $scope.stopMessage, time: $scope.elapsedTime.minutes };
+            var details = { message: $scope.stopMessage, time: p.elapsedTime.minutes };
 
             var prjCommand = new models.ProjectCommand(p.project.projectId, "stop", JSON.stringify(details));
             p.hasActiveLog = false;

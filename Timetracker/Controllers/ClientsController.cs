@@ -126,6 +126,16 @@ namespace Timetracker.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult GetRate(int id)
+        {
+
+            var client = db.Clients.Find(id);
+            return Json(new
+            {
+                rate = client.Rate
+            }, JsonRequestBehavior.AllowGet);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

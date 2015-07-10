@@ -111,4 +111,12 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $("#ClientId").change(function() {
+            var clientEl = $(this);            
+            $.get("http://localhost/Time/clients/getRate/" + clientEl.val(), function (data) {
+                $("#Rate").val(data.rate);
+            });
+        });
+    </script>
 }

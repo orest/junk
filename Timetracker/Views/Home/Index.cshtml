@@ -39,7 +39,7 @@
 
         <div class="container" ng-controller="ProjectController">
             <div class="row">
-                <div class="col-lg-8 col-md-8">
+                <div class="col-lg-8 col-md-8 col-sm-8">
                     <div ng-repeat="prj in projects" ng-cloak>
                         <div class="panel prj" ng-class="{'panel-default':!prj.hasActiveLog, 'panel-primary': prj.hasActiveLog}">
                             <div class="panel-heading">
@@ -64,7 +64,7 @@
                                             </div>
 
                                             <div ng-show="prj.hasActiveLog && !prj.stopping">
-                                                <strong>{{elapsedTime.minutes}}m / {{elapsedTime.hours}}h </strong>
+                                                <strong ng-show="prj.elapsedTime">{{prj.elapsedTime.minutes}}m / {{prj.elapsedTime.hours}}h </strong>
 
                                                 <button ng-show="prj.isPaused " ng-click="restart(prj)" class="btn btn-success  padWide btn-sm">
                                                     <span class="glyphicon glyphicon-play"></span>
@@ -91,7 +91,7 @@
                                             <div class="form-group ">
                                                 <label>Elapsed Time</label>
                                                 <div class="input-group ">
-                                                    <input type="number" maxlength="4" class="form-control " ng-model="$parent.elapsedTime.minutes" />
+                                                    <input type="number" maxlength="4" class="form-control " ng-model="prj.elapsedTime.minutes" />
                                                     <span class="input-group-addon">min</span>
 
                                                 </div>
@@ -158,7 +158,7 @@
 
                 </div>
                 <!-- TODO -->
-                <div class="col-lg-4 ">
+                <div class="col-lg-4 col-md-4 col-sm-4 ">
                     <div class="panel panel-primary">
                         <div class="panel-heading">To Dos</div>
                         <div class="panel-body">

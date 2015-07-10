@@ -58,7 +58,8 @@ namespace Timetracker.Controllers
         {
             ViewBag.ProjectStatusId = LookProjectStatus.ToSelectList();
             ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "CompanyName");
-            return View();
+            var pr = new Project() {StartDate = DateTime.Now};
+            return View(pr);
         }
 
         // POST: Projects/Create
