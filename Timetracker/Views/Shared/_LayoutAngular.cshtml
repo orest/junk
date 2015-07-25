@@ -1,0 +1,65 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="shortcut icon" href="http://localhost/Time/favicon.ico" />
+    <link href="~/Content/themes/base/all.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/cerulean_bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/loading-bar.css" rel="stylesheet" />
+    <link href="~/Content/project.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+    <div id="wrap" ng-app="timeTracker">
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button class="navbar-toggle " type="button" data-toggle="collapse" data-target="#navbar-main">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="/" class="navbar-brand"> <span class="glyphicon glyphicon-time"></span> Time Tracker</a>
+                </div>
+
+                <div class="navbar-collapse collapse" id="navbar-main">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/tracker"> Work</a></li>
+                        <li><a href="projects">Projects</a></li>
+                        <li><a href="clients">Clients</a></li>
+                        <li><a href="stats">Stats</a></li>
+                        <li><a href="logs">logs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            @RenderBody()
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-2.1.1.js"></script>
+    <script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-resource.js"></script>
+    <script src="~/Scripts/angular-route.js"></script>
+    <script src="~/Scripts/angular-cookies.js"></script>
+    <script src="~/Scripts/angular-animate.js"></script>
+
+
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/datetimepicker.js"></script>
+    <script src="~/Scripts/ng-table.js"></script>
+    <script src="~/Scripts/loading-bar.js"></script>
+    <script src="~/Scripts/sortable.js"></script>
+    <script src="~/Scripts/underscore.js"></script>
+
+
+
+</body>
+</html>
