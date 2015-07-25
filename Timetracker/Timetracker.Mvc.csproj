@@ -231,6 +231,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\controllers\StatsController.js" />
+    <Content Include="app\stats-app.js" />
     <Content Include="app\app.js" />
     <Content Include="app\controllers\ProjectController.js" />
     <Content Include="app\directives\escKey.js" />

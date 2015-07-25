@@ -13,7 +13,7 @@
     <title></title>
 </head>
 <body>
-    <div id="wrap" ng-app="timeTracker">
+    <div id="wrap">
         <nav class="navbar navbar-inverse">
             <div class="container">
                 <div class="navbar-header">
@@ -22,7 +22,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="/" class="navbar-brand"> <span class="glyphicon glyphicon-time"></span> Time Tracker</a>
+                    <a href="/time/" class="navbar-brand"> <span class="glyphicon glyphicon-time"></span> Time Tracker</a>
                 </div>
 
                 <div class="navbar-collapse collapse" id="navbar-main">
@@ -60,6 +60,6 @@
     <script src="~/Scripts/underscore.js"></script>
 
 
-
+    @RenderSection("scripts", required: false)
 </body>
 </html>
