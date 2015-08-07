@@ -11,8 +11,8 @@
                     <div data-toggle="btn" class="btn-group">
                         <button class="btn btn-sm btn-primary" ng-class="{'active':(filter=='today')}" ng-click="setFilter('today')">Today</button>
                         <button class="btn btn-sm btn-primary" ng-class="{'active':(filter=='week')}" ng-click="setFilter('week')">This Week</button>
-                        <button class="btn btn-sm btn-primary" ng-class="{active:(filter=='last')}"  ng-click="setFilter('last')" >Last Week</button>
-                        <button class="btn btn-sm btn-primary" ng-class="{active:(filter=='month')}" ng-click="setFilter('month')">This Month</button>       
+                        <button class="btn btn-sm btn-primary" ng-class="{active:(filter=='last')}" ng-click="setFilter('last')">Last Week</button>
+                        <button class="btn btn-sm btn-primary" ng-class="{active:(filter=='month')}" ng-click="setFilter('month')">This Month</button>
                     </div>
                 </div>
 
@@ -52,7 +52,7 @@
                 </div>
             </div>
             <div class="col-lg-6">
-             
+                <div id="weeklyReport" class="graph"></div>
             </div>
         </div>
 
@@ -72,4 +72,6 @@
     <script src="~/app/controllers/ProjectController.js"></script>
     <script src="~/app/directives/escKey.js"></script>
     <script src="~/app/services/statsService.js"></script>
+    <script src="~/Scripts/highcharts.js"></script>
+    <script src="~/Scripts/highcharts-3d.js"></script>
 }

@@ -13,6 +13,45 @@
                     $scope.weekTotalAmount += item.total;
                 });
             });
+
+
+            statsService.get('week-series').$promise.then(function (data) {
+                var weeks = [];
+                var hours = [];
+                _.each(data, function (item) {                   
+                    weeks.push(item.weekId);
+                    hours.push(Number(item.elapsedHours));
+                });
+
+                $('#weeklyReport').highcharts({
+                    chart: {
+                        type: 'column',
+                        //margin: 20,
+                        //options3d: {
+                        //    enabled: false,
+                        //    alpha: 10,
+                        //    beta: 25,
+                        //    depth: 70
+                        //}
+                    },
+                    plotOptions: {
+                        column: {
+                            dataLabels: {
+                                enabled: true
+                            },
+                            enableMouseTracking: false
+                        }
+                    },
+                    title: { text: null },
+                    xAxis: { categories: weeks },
+                    yAxis: { title: { text: 'Hours' } },
+                    tooltip: { valueSuffix: ' hours' },
+                    legend: { layout: 'vertical', align: 'right', verticalAlign: 'middle', borderWidth: 0 },
+                    series: [{ name:'hours',  showInLegend: false,    data: hours }]
+                });
+
+            });
+
         }
 
 

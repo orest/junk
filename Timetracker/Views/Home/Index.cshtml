@@ -119,11 +119,11 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <ul class="list-group">
-                                            <li class="list-group-item clearfix" ng-class=" {'list-group-item-warning':task.statusCd=='todo','list-group-item-success':task.statusCd=='cmptd'}"
-                                                ng-repeat="task in prj.project.tasks |orderBy: 'statusCd' ">
+                                            <li class="list-group-item  clearfix" ng-class=" {'list-group-item-warning':task.statusCd=='todo','list-group-item-success':task.statusCd=='cmptd'}"
+                                                ng-repeat="task in prj.project.tasks | filter:{statusCd:'!cmptd'} | orderBy: 'statusCd' ">
                                                 <div class="row">
                                                     <div class="col-md-9" ng-dblclick="task.editing=true;task.newTitle=task.title; ">
-                                                        <span ng-hide="task.editing">{{task.title}}</span>
+                                                        <span ng-hide="task.editing" class="pad8">{{task.title}}</span>
                                                         <input ng-show="task.editing" enter-key="updateTask(task)" ng-model="task.newTitle" class="form-control" esc-key="cancelTask(task)" />
                                                     </div>
 

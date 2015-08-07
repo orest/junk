@@ -105,10 +105,9 @@
 
         //updateTask task
         $scope.updateTask = function (task) {
-            if (task.newTitle) {
+            if (task.newTitle) 
                 task.title = task.newTitle;
-                projectService.saveTask(task);
-            }
+            projectService.saveTask(task);            
             task.editing = false;
         }
 
@@ -163,7 +162,7 @@
             }
         };
 
-        statsService.get('weeklyreport').$promise.then(function (data) {
+        statsService.get('weeklyreport','week').$promise.then(function (data) {
             $scope.stat = data;
             var total = _.reduce($scope.stat, function (num, item) {
                 return num + Number(item.elapsed);
