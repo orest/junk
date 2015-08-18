@@ -7,11 +7,12 @@
     <div ng-controller="StatsController">
         <div class="row">
             <div class="row well-sm">
-                <div class="col-lg-offset-4 col-sm-4 col-md-4 col-lg-4 ">
+                <div class="col-lg-offset-3 col-sm-5 col-md-5 col-lg-5 ">
                     <div data-toggle="btn" class="btn-group">
                         <button class="btn btn-sm btn-primary" ng-class="{'active':(filter=='today')}" ng-click="setFilter('today')">Today</button>
                         <button class="btn btn-sm btn-primary" ng-class="{'active':(filter=='week')}" ng-click="setFilter('week')">This Week</button>
                         <button class="btn btn-sm btn-primary" ng-class="{active:(filter=='last')}" ng-click="setFilter('last')">Last Week</button>
+                        <button class="btn btn-sm btn-primary" ng-class="{active:(filter=='last-month')}" ng-click="setFilter('last-month')">Last Month</button>
                         <button class="btn btn-sm btn-primary" ng-class="{active:(filter=='month')}" ng-click="setFilter('month')">This Month</button>
                     </div>
                 </div>
