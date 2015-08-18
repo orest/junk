@@ -10,6 +10,7 @@
         var todoPriority = [];
 
         var getTime = function (prj) {
+
             var prjCommand = { projectId: prj.project.projectId, action: "time", actionDetails: "" };
             prj.elapsedTime = projectCommandService.process(prjCommand);
 
@@ -35,7 +36,8 @@
                 angular.forEach($scope.projects, function (item) {
                     if (item.hasActiveLog) {
                         getTime(item);
-                        startTimer(item);
+                        if (!item.isPaused)
+                            startTimer(item);
                     }
                 });
             });
@@ -66,6 +68,7 @@
         //stopping
         $scope.stopping = function (prj) {
             prj.stopping = true;
+
             cancelTimer();
         }
 
@@ -76,8 +79,8 @@
         }
         // Stop buttons
         $scope.stop = function (p) {
-            var details = { message: $scope.stopMessage, time: p.elapsedTime.minutes };
-
+            var elapsedMinutes = parseFloat(p.elapsedTime.hours) * 60;
+            var details = { message: $scope.stopMessage, time: elapsedMinutes };
             var prjCommand = new models.ProjectCommand(p.project.projectId, "stop", JSON.stringify(details));
             p.hasActiveLog = false;
             p.stopping = false;
@@ -105,9 +108,9 @@
 
         //updateTask task
         $scope.updateTask = function (task) {
-            if (task.newTitle) 
+            if (task.newTitle)
                 task.title = task.newTitle;
-            projectService.saveTask(task);            
+            projectService.saveTask(task);
             task.editing = false;
         }
 
@@ -162,7 +165,7 @@
             }
         };
 
-        statsService.get('weeklyreport','week').$promise.then(function (data) {
+        statsService.get('weeklyreport', 'week').$promise.then(function (data) {
             $scope.stat = data;
             var total = _.reduce($scope.stat, function (num, item) {
                 return num + Number(item.elapsed);
