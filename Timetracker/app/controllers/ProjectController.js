@@ -87,6 +87,8 @@
             $scope.stopMessage = "";
             projectCommandService.process(prjCommand);
             cancelTimer();
+            getWeeklyReport();
+
         }
 
         //Pause buttons
@@ -165,13 +167,16 @@
             }
         };
 
-        statsService.get('weeklyreport', 'week').$promise.then(function (data) {
-            $scope.stat = data;
-            var total = _.reduce($scope.stat, function (num, item) {
-                return num + Number(item.elapsed);
-            }, 0);
-            $scope.weekTotal = total;
-        });
+        function getWeeklyReport() {
+            statsService.get('weeklyreport', 'week').$promise.then(function (data) {
+                $scope.stat = data;
+                var total = _.reduce($scope.stat, function (num, item) {
+                    return num + Number(item.elapsed);
+                }, 0);
+                $scope.weekTotal = total;
+            });
+        }
 
+        getWeeklyReport();
 
     });
