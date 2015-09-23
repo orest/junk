@@ -1,5 +1,5 @@
 ﻿angular.module("timeTracker").controller("ProjectController",
-    function ($scope, projectService, projectCommandService, todoService, $interval, globals, models, _, statsService) {
+    function ($scope, projectService, projectCommandService, todoService, $interval, globals, models, _, statsService, $timeout) {
         var timer;
         $scope.projects = [];
         $scope.stopMessage = "";
@@ -85,9 +85,11 @@
             p.hasActiveLog = false;
             p.stopping = false;
             $scope.stopMessage = "";
-            projectCommandService.process(prjCommand);
+            projectCommandService.process(prjCommand).$promise.then(function() {
+                getWeeklyReport();
+            });
             cancelTimer();
-            getWeeklyReport();
+            
 
         }
 
@@ -174,6 +176,7 @@
                     return num + Number(item.elapsed);
                 }, 0);
                 $scope.weekTotal = total;
+
             });
         }
 
