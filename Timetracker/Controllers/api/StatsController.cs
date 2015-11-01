@@ -33,6 +33,9 @@ namespace Timetracker.Controllers.api {
                     } else if (filter == "month") {
                         var firstOfThisMonth = new DateTime(today.Year, today.Month, 1);
                         query = query.Where(w => w.StartDate > firstOfThisMonth);
+                    } else if (filter == "last-month") {
+                        var firstOfThisMonth = new DateTime(today.Year, today.Month - 1, 1);
+                        query = query.Where(w => w.StartDate > firstOfThisMonth);
                     } else {
                         query = query.Where(w => w.WeekId == currWeek);
                     }
@@ -71,7 +74,7 @@ namespace Timetracker.Controllers.api {
                             .Select(p => new {
                                 WeekId = p.Key,
                                 ElapsedHours = TotalHours(p.Sum(c => c.ElapsedMinutes))
-                            }).OrderBy(w=>w.WeekId);
+                            }).OrderBy(w => w.WeekId);
                     return Ok(report);
                     break;
             }
