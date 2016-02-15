@@ -14,6 +14,33 @@ namespace Timetracker.Controllers.api {
     public class StatsController : ApiController {
         private TimeTrakerContext db = new TimeTrakerContext();
 
+        public IHttpActionResult GetByDate(DateTime startDate, DateTime endDate)
+        {
+            endDate = endDate.AddDays(1);
+            var query = db.WorkLogs.Include(p => p.Fragments).Where(w => w.StartDate >= startDate && w.StartDate < endDate);
+
+            var data = query.GroupBy(w => w.ProjectId)
+                    .Select(p => new {
+                        ProjectId = p.Key,
+                        ElapsedMinutes = p.Sum(c => c.ElapsedMinutes)
+                    });
+            var projects = db.Projects.ToList();
+            var projectData = projects.Join(data,
+                pr => pr.ProjectId,
+                dt => dt.ProjectId,
+                (p, d) => new {
+                    p.ProjectId,
+                    p.Title,
+                    Elapsed = TotalHours(d.ElapsedMinutes),
+                    p.Rate,
+                    Total = (Convert.ToDecimal(d.ElapsedMinutes) / 60) * p.Rate
+                }
+                );
+            return Ok(projectData);
+            
+
+        }
+
         public IHttpActionResult Get(string action, string filter = "") {
 
             var currWeek = Helpers.Helper.GetWeek(DateTime.Now);
@@ -26,7 +53,7 @@ namespace Timetracker.Controllers.api {
                 case "weeklyreport":
                     var query = db.WorkLogs.Include(p => p.Fragments);
                     if (filter == "last") {
-                        query = query.Where(w => w.WeekId == currWeek - 1);
+                        query = query.Where(w => w.WeekId == currWeek - 1 && w.StartDate.Year == DateTime.Now.Year);
                     } else if (filter == "today") {
                         today = new DateTime(today.Year, today.Month, today.Day);
                         query = query.Where(w => w.StartDate > today);
@@ -34,10 +61,11 @@ namespace Timetracker.Controllers.api {
                         var firstOfThisMonth = new DateTime(today.Year, today.Month, 1);
                         query = query.Where(w => w.StartDate > firstOfThisMonth);
                     } else if (filter == "last-month") {
-                        var firstOfThisMonth = new DateTime(today.Year, today.Month - 1, 1);
-                        query = query.Where(w => w.StartDate > firstOfThisMonth);
+                        var firstOfLastMonth = new DateTime(today.Year, today.Month - 1, 1);
+                        var firstOfThisMonth = new DateTime(today.Year, today.Month, 1);
+                        query = query.Where(w => w.StartDate > firstOfLastMonth && w.EndDate < firstOfThisMonth);
                     } else {
-                        query = query.Where(w => w.WeekId == currWeek);
+                        query = query.Where(w => w.WeekId == currWeek && w.StartDate.Year == DateTime.Now.Year);
                     }
 
 
@@ -69,7 +97,7 @@ namespace Timetracker.Controllers.api {
                         );
                     return Ok(projectData);
                 case "week-series":
-                    var report = db.WorkLogs
+                    var report = db.WorkLogs.Where(w => w.StartDate.Year == DateTime.Now.Year && w.WeekId < 53)
                             .GroupBy(w => w.WeekId).ToList()
                             .Select(p => new {
                                 WeekId = p.Key,

@@ -5,21 +5,44 @@
 
 <div id="wrap" ng-app="timeTracker">
     <div ng-controller="StatsController">
-        <div class="row">
-            <div class="row well-sm">
-                <div class="col-lg-offset-3 col-sm-5 col-md-5 col-lg-5 ">
-                    <div data-toggle="btn" class="btn-group">
-                        <button class="btn btn-sm btn-primary" ng-class="{'active':(filter=='today')}" ng-click="setFilter('today')">Today</button>
-                        <button class="btn btn-sm btn-primary" ng-class="{'active':(filter=='week')}" ng-click="setFilter('week')">This Week</button>
-                        <button class="btn btn-sm btn-primary" ng-class="{active:(filter=='last')}" ng-click="setFilter('last')">Last Week</button>
-                        <button class="btn btn-sm btn-primary" ng-class="{active:(filter=='last-month')}" ng-click="setFilter('last-month')">Last Month</button>
-                        <button class="btn btn-sm btn-primary" ng-class="{active:(filter=='month')}" ng-click="setFilter('month')">This Month</button>
-                    </div>
+
+        <div class="row well-sm">
+            <div class="col-lg-offset-2 col-sm-6 col-md-6 col-lg-6 ">
+                <div data-toggle="btn" class="btn-group">
+                    <button class="btn btn-sm btn-primary" ng-class="{'active':(filter=='today')}" ng-click="setFilter('today')">Today</button>
+                    <button class="btn btn-sm btn-primary" ng-class="{'active':(filter=='week')}" ng-click="setFilter('week')">This Week</button>
+                    <button class="btn btn-sm btn-primary" ng-class="{active:(filter=='last')}" ng-click="setFilter('last')">Last Week</button>
+                    <button class="btn btn-sm btn-primary" ng-class="{active:(filter=='last-month')}" ng-click="setFilter('last-month')">Last Month</button>
+                    <button class="btn btn-sm btn-primary" ng-class="{active:(filter=='month')}" ng-click="setFilter('month')">This Month</button>
+                    <button class="btn btn-sm btn-primary" data-toggle="collapse" data-target="#collapseAdvanced" expanded="false">Advanced</button>
                 </div>
-
             </div>
-            <div class="col-lg-6">
+        </div>
 
+        <div class="row collapse" id="collapseAdvanced">
+            <div class="col-lg-offset-2 col-sm-2 col-md-1 col-lg-2 ">
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="startDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-change="startDateChange()" close-text="Close" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="endDate" is-open="popup2.opened" datepicker-options="dateOptions" close-text="Close" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-warning" ng-click="setFilter('custom-date')">Process</button>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-lg-6">
                 <div class="row">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
@@ -57,13 +80,11 @@
             </div>
         </div>
 
-
-
-
     </div>
 </div>
 @section scripts
 {
+
     <script src="~/app/stats-app.js"></script>
     <script src="~/app/controllers/StatsController.js"></script>
     <script src="~/app/services/globals.js"></script>

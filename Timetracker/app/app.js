@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 angular.module("timeTracker", ['ngResource', 'ngRoute', 'ngCookies', 'ngTable',
-    'angular-loading-bar','ngAnimate', 'ui.bootstrap.datetimepicker', 'ui.sortable'])
+    'angular-loading-bar', 'ngAnimate', 'ui.bootstrap', 'ui.sortable'])
     .config(function ($routeProvider, $locationProvider, cfpLoadingBarProvider) {
         $routeProvider.when('/tracker', { templateUrl: '/app/partials/entryManager.html', controller: 'JogTrackerController' });
         $routeProvider.when('/reports', { templateUrl: '/app/partials/reports.html', controller: 'ReportsController' });
