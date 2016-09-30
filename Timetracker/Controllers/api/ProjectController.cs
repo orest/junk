@@ -33,7 +33,7 @@ namespace Timetracker.Controllers.api
                 Project = p
             });
 
-            pr = pr.OrderByDescending(p => p.HasActiveLog).ThenByDescending( p => p.Project.Rate);
+            pr = pr.OrderByDescending(p => p.HasActiveLog).ThenByDescending( p => p.Project.Rate).ThenBy(p=>p.Project.ClientId);
             return Ok(pr);
         }
 
